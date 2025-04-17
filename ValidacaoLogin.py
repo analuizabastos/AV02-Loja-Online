@@ -3,14 +3,14 @@ def login(usuarios):
     while True:
         usuario_temp = input("Digite o usuario: ").upper()
         if usuario_temp in usuarios:
-            print("Usuario correto!")
+            print("Usuario correto!\n")
             break
         elif usuario_temp == "SAIR":
             return False
         else:
             print("Usuario nao encontrado. Tente Novamente!")
-            print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.")
-    while contador <= 3:
+            print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.\n")
+    while contador < 3:
         senha_temp = input("Digite sua senha: ").upper()
         if usuarios[usuario_temp] == senha_temp:
             print("Login validado com sucesso!")

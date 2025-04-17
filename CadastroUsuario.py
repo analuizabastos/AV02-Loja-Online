@@ -1,5 +1,5 @@
 def cadastro(usuarios):
-    print("---- Cadastro de Usuarios ----")
+    print("\n---- Cadastro de Usuarios ----")
     while True:
         print("Utilize letras e numeros, sem espacos ou caracteres especiais.")
         usuario_cadastro = input("Digite o nome do seu usuario: ").upper()
