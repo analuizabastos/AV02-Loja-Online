@@ -10,7 +10,7 @@ def login(usuarios):
         else:
             print("Usuario nao encontrado. Tente Novamente!")
             print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.")
-    while contador <= 4:
+    while contador <= 3:
         senha_temp = input("Digite sua senha: ").upper()
         if usuarios[usuario_temp] == senha_temp:
             print("Login validado com sucesso!")
@@ -21,6 +21,8 @@ def login(usuarios):
             print("Senha incorreta. Tente novamente!")
             print("Digite -Sair- para voltar para o Menu Principal.")
             contador+=1
+    print("Número máximo de tentativas excedido. Retornando ao menu principal.")
+    return False 
     
         
     

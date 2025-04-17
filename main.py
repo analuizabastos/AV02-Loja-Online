@@ -7,12 +7,15 @@ while True:
     print("1.Login\n2-Cadastrar Usuario\n3-Sair\n")
     try:
         escolha = int(input("Digite um numero: "))
-        if (escolha == 1 or escolha == 2 or escolha == 3):
+        if escolha in [1,2,3]:
             if escolha == 1:
-                escolha = login(usuarios)
-                
+                acesso = login(usuarios)
+                if acesso: 
+                    print("Acesso autorizado.\nBem - Vindo ao Estoque.")
+                else:
+                    print("Voltando ao Menu Pincipal...")
             elif escolha == 2:
-                escolha == cadastro(usuarios)
+                cadastro(usuarios)
             else:
                 print("Obrigada.")
                 break
