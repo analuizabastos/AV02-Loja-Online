@@ -27,4 +27,4 @@ def cadastro(usuarios):
             print(erro)
     
     usuarios[usuario_cadastro] = senha_cadastro
-    print("Usuario cadastrado com sucesso.")
+    print("Usuario cadastrado com sucesso.\n")
