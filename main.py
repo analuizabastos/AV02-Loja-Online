@@ -1,5 +1,6 @@
 from CadastroUsuario import cadastro
 from ValidacaoLogin import login
+from EntrarEstoque import menuEstoque
 
 usuarios = {}
 while True:
@@ -11,14 +12,15 @@ while True:
             if escolha == 1:
                 acesso = login(usuarios)
                 if acesso: 
-                    print("Acesso autorizado.\nBem-Vindo ao Estoque.\n")
+                    print("Bem-Vindo ao Estoque.\n")
+                    menuEstoque()
                 else:
                     print("Voltando ao Menu Pincipal...")
             elif escolha == 2:
                 cadastro(usuarios)
             else:
-                print("Obrigada.")
-                break
+                print("Sessão finalizada.")
+                exit()
         else:
             print("Digite um valor do menu.\n")
     except ValueError:
