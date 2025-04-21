@@ -1,20 +1,20 @@
+from Validacoes.ValidacaoNome import validar_nome
+from Validacoes.ValidacaoPreco import validar_preco
+from Validacoes.ValidacaoQuantidade import validar_quantidade
+
 def produtos(estoque):
     while True:
         while True:
+            nome = input("\nNome do produto: ").upper().strip()
             try:
-                nome = input("\nNome do produto: ")
-                for caractere in nome:
-                    if not caractere.isalpha():
-                        raise ValueError("Nome inválido. Use apenas letras.")
+                validar_nome(nome)
                 break 
             except ValueError as erro:
-                print(erro)
-        
+                print(erro) 
         while True:    
             try:    
                 preco = float(input("Preço do produto: "))
-                if preco < 0:
-                    raise ValueError("Preco Invalido. Deve ser positivo.") 
+                validar_preco(preco)
                 break
             except ValueError:
                 print("Preco invalido. Digite apenas numeros.")   
@@ -22,13 +22,7 @@ def produtos(estoque):
         while True:
             try:
                 quantidade = (input("Quantidade do produto: ")).strip()
-                for caractere in quantidade:
-                    if not caractere.isnumeric():
-                        raise ValueError("Quantidade invalida. Digite apenas numeros inteiros.")
-                quantidade = int(quantidade)
-                if quantidade < 0:
-                    print("Quantidade invalida. Deve ser positivo.")
-                    continue
+                validar_quantidade(quantidade)
                 break
             except ValueError as erro:
                 print(erro)
@@ -47,7 +41,7 @@ def produtos(estoque):
                     print("Cadastro de produtos concluido.")
                     print("-------------------------------\n")
                     return False
-                if escolha == 1:
+                elif escolha == 1:
                     break
                 else:
                     raise ValueError("Valor inválido. Digite 1 ou 2.")

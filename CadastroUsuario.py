@@ -9,6 +9,8 @@ def cadastro(usuarios):
                     raise ValueError("Usuario Invalido. Tente novamente!")
             if usuario_cadastro in usuarios:
                 print("Usuario ja cadastrado. Tente novamente!")
+            elif usuario_cadastro == "SAIR":
+                raise ValueError("Usuario Invalido. Tente novamente!")
             else:
                 break
         except ValueError as erro:
@@ -22,6 +24,8 @@ def cadastro(usuarios):
                     raise ValueError("Senha com caracteres invalidos. Tente novamente!")
             if len(senha_cadastro) < 6:
                 raise ValueError("Senha curta. Tente novamente com, no minimo, 6 caracteres.")
+            elif senha_cadastro == "SAIR":
+                raise ValueError("Usuario Invalido. Tente novamente!")
             break
         except ValueError as erro:
             print(erro)

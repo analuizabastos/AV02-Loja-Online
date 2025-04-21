@@ -1,6 +1,6 @@
 from CadastroUsuario import cadastro
-from ValidacaoLogin import login
-from EntrarEstoque import menuEstoque
+from Validacoes.ValidacaoLogin import login
+from Estoque.MenuEstoque import menuEstoque
 
 usuarios = {}
 while True:
