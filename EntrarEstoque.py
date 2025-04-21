@@ -1,21 +1,29 @@
 from CadastroEstoque import produtos
+from ExcluirProduto import RemoverProduto
+from EditarEstoque import editar
 
 def menuEstoque():
     estoque = {}
     while True:
         print("----Estoque da Loja X----")
-        print("O que deseja fazer?")
-        print("1. Cadastrar produtos\n2. Ver estoque\n3. Sair\n")
+        print("\nO que deseja fazer?")
+        print("\n1. Cadastrar produtos\n2. Ver estoque\n3. Exluir produto\n4. Editar estoque\n5. Sair\n")
         try:
-            escolha2 = int(input("Digite um número: \n"))
+            escolha2 = int(input("Digite um número: "))
             if escolha2 == 1:
                 produtos(estoque)
             elif escolha2 == 2:
-                print("PRODUTOS NO ESTOQUE\n")
+                print("\n======================== PRODUTOS NO ESTOQUE ========================\n")
                 for nome, info in estoque.items():
-                    print(f"Nome:{nome:<20}Preco: R${info['preco']:<10.2f}Quantidade:{info['quantidade']:<10}\n")
+                    print(f"| Nome: {nome:<20}Preco: R${info['preco']:<10.2f}Quantidade: {info['quantidade']:<10}|\n")
+                print("\n=====================================================================\n")
+            elif escolha2 == 3:
+                RemoverProduto(estoque)
+            elif escolha2 == 4:
+                editar(estoque)
             else:
                 print("Encerrando...")
                 break
         except ValueError:
             print("Digite um valor válido.")
+    return estoque
