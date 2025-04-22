@@ -19,7 +19,8 @@ O sistema permite o **cadastro de usuários**, **login com verificação**, e o 
 ---
 
 ## 🗂 Estrutura de Pastas
-```📁 AV02 - Loja Online
+```
+📁 AV02 - Loja Online
 ├── 📁 Estoque
 │   ├── 📝 CadastroProduto.py
 │   ├── 📝 EditarEstoque.py
@@ -35,7 +36,8 @@ O sistema permite o **cadastro de usuários**, **login com verificação**, e o 
 │
 ├── 📝 CadastroUsuario.py
 ├── 📝 main.py
-└── 📄 README.md```
+└── 📄 README.md
+```
 
 ---
 
