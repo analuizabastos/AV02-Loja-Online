@@ -37,24 +37,14 @@ AV02 - Loja Online/ │
 
 ---
 
-## ▶️ Como Executar
-
-1. Verifique se você possui o **Python 3.x** instalado.
-2. Clone ou baixe este repositório.
-3. No terminal, navegue até a pasta do projeto.
-4. Execute o arquivo principal:
-
-```bash
-python main.py
-
-Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 Python 3
 Estrutura modular com múltiplos arquivos .py
 Tratamento de exceções com try/except
 Validações manuais de entrada de dados
 
-Validações Importantes
+## Validações Importantes
 Usuários:
     Apenas letras e números (sem espaços no início/fim).
     Senha com no mínimo 6 caracteres.
@@ -68,8 +58,18 @@ Erros comuns tratados:
     Espaços vazios
     Tipos errados em campos de número
 
-Autores
+## Autores
 Nome: Ana Luiza Almeida e Wagner Lopes
 Curso: Sistemas de Informação
 Centro Universitario Cesmac
 Projeto acadêmico de avaliação contínua (AV02) - Programação II
+
+## ▶️ Como Executar
+
+1. Verifique se você possui o **Python 3.x** instalado.
+2. Clone ou baixe este repositório.
+3. No terminal, navegue até a pasta do projeto.
+4. Execute o arquivo principal:
+
+```bash
+python main.py
