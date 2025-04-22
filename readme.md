@@ -19,50 +19,58 @@ O sistema permite o **cadastro de usuários**, **login com verificação**, e o 
 ---
 
 ## 🗂 Estrutura de Pastas
-AV02 - Loja Online/ │ 
-├── Estoque/ 
-│ ├── CadastroProduto.py 
-│ ├── EditarEstoque.py 
-│ ├── ExcluirProduto.py 
-│ ├── MenuEstoque.py 
-│ └── OpcoesEditar.py 
-├── Validacoes/ 
-│ ├── ValidacaoLogin.py 
-│ ├── ValidacaoNome.py 
-│ ├── ValidacaoPreco.py
-│ └── ValidacaoQuantidade.py
-├── CadastroUsuario.py 
-├── main.py 
-└── README.md
+📁 AV02 - Loja Online
+├── 📁 Estoque
+│   ├── 📝 CadastroProduto.py
+│   ├── 📝 EditarEstoque.py
+│   ├── 📝 ExcluirProduto.py
+│   ├── 📝 MenuEstoque.py
+│   └── 📝 OpcoesEditar.py
+│
+├── 📁 Validacoes
+│   ├── 📝 ValidacaoLogin.py
+│   ├── 📝 ValidacaoNome.py
+│   ├── 📝 ValidacaoPreco.py
+│   └── 📝 ValidacaoQuantidade.py
+│
+├── 📝 CadastroUsuario.py
+├── 📝 main.py
+└── 📄 README.md
 
 ---
 
 ## Tecnologias Utilizadas
 
-Python 3
-Estrutura modular com múltiplos arquivos .py
-Tratamento de exceções com try/except
-Validações manuais de entrada de dados
+- Python 3
+- Estrutura modular com múltiplos arquivos .py
+- Tratamento de exceções com try/except
+- Validações manuais de entrada de dados
+
+---
 
 ## Validações Importantes
-Usuários:
-    Apenas letras e números (sem espaços no início/fim).
-    Senha com no mínimo 6 caracteres.
-Produtos:
-    Nome: apenas letras e espaços (ex: "ARROZ INTEGRAL").
-    Preço: número float maior que zero.
-    Quantidade: número inteiro e positivo.
-Erros comuns tratados:
-    Entrada com vírgula ao invés de ponto em valores monetários
-    Caracteres inválidos no nome
-    Espaços vazios
-    Tipos errados em campos de número
+- Usuários:
+Apenas letras e números (sem espaços no início/fim).
+Senha com no mínimo 6 caracteres.
+- Produtos:
+Nome: apenas letras e espaços (ex: "ARROZ INTEGRAL").
+Preço: número float maior que zero.
+Quantidade: número inteiro e positivo.
+- Erros comuns tratados:
+Entrada com vírgula ao invés de ponto em valores monetários
+Caracteres inválidos no nome
+Espaços vazios
+Tipos errados em campos de número
+
+---
 
 ## Autores
-Nome: Ana Luiza Almeida e Wagner Lopes
-Curso: Sistemas de Informação
-Centro Universitario Cesmac
-Projeto acadêmico de avaliação contínua (AV02) - Programação II
+- Nome: Ana Luiza Almeida e Wagner Lopes
+- Curso: Sistemas de Informação
+- Centro Universitario Cesmac
+- Projeto acadêmico de avaliação contínua (AV02) - Programação II
+
+---
 
 ## ▶️ Como Executar
 
