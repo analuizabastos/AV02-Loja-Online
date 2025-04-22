@@ -1,6 +1,8 @@
 from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
+from Validacoes.ValidacaoEditar import validacao
+
 
 def editar(estoque):
     if not estoque:
@@ -18,38 +20,10 @@ def editar(estoque):
                 print("\nO que deseja editar?\n1. Nome\n2. Preço\n3. Quantidade\n4. Sair")
                 escolha = int(input("\nDigite o numero:"))
                 if escolha in [1,2,3,4]:
-                    if escolha == 1:
-                        while True:
-                            try:
-                                novo_nome = input("Digite um novo nome: ").upper().strip()
-                                validar_nome(novo_nome)
-                                if novo_nome not in estoque:
-                                    estoque[novo_nome] = estoque.pop(nome)
-                                    break
-                                else:
-                                    raise ValueError("Produto já existe. Digite um novo nome.")
-                            except ValueError as erro:
-                                print(erro)
-                    elif escolha == 2:
-                        while True:
-                            try: 
-                                novo_preco = float(input("Digite o novo preço: "))
-                                validar_preco(novo_preco)
-                                estoque[nome]['preco'] = novo_preco
-                                break
-                            except ValueError:
-                                print("Preco inválido. Digite apenas números.")
-                    elif escolha == 3:
-                        while True:
-                            try:
-                                nova_quantidade = input("Digite a nova quantidade: ")
-                                validar_quantidade(nova_quantidade)
-                                estoque[nome]['quantidade'] = nova_quantidade
-                                break
-                            except ValueError as erro:
-                                print(erro)
-                    else:
+                    if escolha == 4:
                         break
+                    else:
+                        validacao(estoque, nome, escolha )
                 else:
                     print("Valor inválido, digite apenas 1, 2 ou 3")
                     continue
