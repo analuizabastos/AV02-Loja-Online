@@ -16,7 +16,10 @@ def produtos(estoque):
                 print(erro) 
         while True:    
             try:    
-                preco = float(input("Preço do produto: "))
+                preco = (input("Preço do produto: ")).upper()
+                if preco == "SAIR":
+                    return
+                preco = float(preco)
                 validar_preco(preco)
                 break
             except ValueError:
@@ -24,7 +27,9 @@ def produtos(estoque):
         
         while True:
             try:
-                quantidade = (input("Quantidade do produto: ")).strip()
+                quantidade = (input("Quantidade do produto: ")).strip().upper()
+                if quantidade == "SAIR":
+                    return
                 validar_quantidade(quantidade)
                 break
             except ValueError as erro:

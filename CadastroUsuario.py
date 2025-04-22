@@ -10,6 +10,9 @@ def cadastro(usuarios):
                     raise ValueError("Usuario Invalido. Tente novamente!")
             if usuario_cadastro in usuarios:
                 print("Usuario ja cadastrado. Tente novamente!")
+                continue
+            if not usuario_cadastro:
+                raise ValueError("Usuário inválido. Não pode ser vazio ou só espaços!\n")
             elif usuario_cadastro == "SAIR":
                 return
             else:

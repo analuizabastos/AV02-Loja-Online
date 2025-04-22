@@ -21,7 +21,10 @@ def editar_estoque(estoque, nome, escolha):
     elif escolha == 2:
             while True:
                 try: 
-                    novo_preco = float(input("Digite o novo preço: "))
+                    novo_preco = input("Digite o novo preço: ").upper().strip()
+                    if novo_preco == "SAIR":
+                        return
+                    novo_preco = float(novo_preco)
                     validar_preco(novo_preco)
                     estoque[nome]['preco'] = novo_preco
                     break
@@ -30,7 +33,9 @@ def editar_estoque(estoque, nome, escolha):
     elif escolha == 3:
         while True:
             try:
-                nova_quantidade = input("Digite a nova quantidade: ")
+                nova_quantidade = input("Digite a nova quantidade: ").upper().strip()
+                if nova_quantidade == "SAIR":
+                    return
                 validar_quantidade(nova_quantidade)
                 estoque[nome]['quantidade'] = nova_quantidade
                 break
