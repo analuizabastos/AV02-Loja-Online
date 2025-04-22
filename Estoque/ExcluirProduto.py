@@ -6,7 +6,10 @@ def RemoverProduto(estoque):
         return
     while True:
         try:   
+            print("Digite -Sair- para voltar para o Menu.\n")
             nome = input("Informe o nome do produto que deseja excluir: ").upper().strip()
+            if nome == 'SAIR':
+                return
             validar_nome(nome)
             if nome in estoque:
                 estoque.pop(nome)

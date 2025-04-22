@@ -2,7 +2,8 @@ def cadastro(usuarios):
     print("\n---- Cadastro de Usuarios ----")
     while True:
         print("Utilize letras e numeros, sem espacos ou caracteres especiais.")
-        usuario_cadastro = input("Digite o nome do seu usuario: ").upper()
+        print("Digite -Sair- para voltar para o Menu Principal.\n")
+        usuario_cadastro = input("Digite o nome do seu usuario: ").upper().strip()
         try:
             for caractere in usuario_cadastro:
                 if not caractere.isalnum():
@@ -10,14 +11,14 @@ def cadastro(usuarios):
             if usuario_cadastro in usuarios:
                 print("Usuario ja cadastrado. Tente novamente!")
             elif usuario_cadastro == "SAIR":
-                raise ValueError("Usuario Invalido. Tente novamente!")
+                return
             else:
                 break
         except ValueError as erro:
             print(erro)
     while True:
-        print("Utilize letras e numeros, sem espacos ou caracteres especiais. Minimo de 6 caracteres.")
-        senha_cadastro = input("Digite a sua senha: ").upper()
+        print("\nUtilize letras e numeros, sem espacos ou caracteres especiais. Minimo de 6 caracteres.")
+        senha_cadastro = input("Digite a sua senha: ").upper().strip()
         try:
             for caractere_senha in senha_cadastro:
                 if not caractere_senha.isalnum():
@@ -25,7 +26,7 @@ def cadastro(usuarios):
             if len(senha_cadastro) < 6:
                 raise ValueError("Senha curta. Tente novamente com, no minimo, 6 caracteres.")
             elif senha_cadastro == "SAIR":
-                raise ValueError("Usuario Invalido. Tente novamente!")
+                return
             break
         except ValueError as erro:
             print(erro)

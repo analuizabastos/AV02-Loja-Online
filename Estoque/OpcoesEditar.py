@@ -2,11 +2,14 @@ from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
 
-def validacao(estoque, nome, escolha):
+def editar_estoque(estoque, nome, escolha):
     if escolha == 1:
         while True:
             try:
                 novo_nome = input("Digite um novo nome: ").upper().strip()
+                print("Digite -Sair- para voltar para o Menu.\n")
+                if novo_nome == "SAIR":
+                    return
                 validar_nome(novo_nome)
                 if novo_nome not in estoque:
                     estoque[novo_nome] = estoque.pop(nome)
@@ -32,4 +35,4 @@ def validacao(estoque, nome, escolha):
                 estoque[nome]['quantidade'] = nova_quantidade
                 break
             except ValueError as erro:
-                   print(erro)
+                print(erro)

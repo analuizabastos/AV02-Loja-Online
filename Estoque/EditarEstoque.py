@@ -1,8 +1,4 @@
-from Validacoes.ValidacaoNome import validar_nome
-from Validacoes.ValidacaoPreco import validar_preco
-from Validacoes.ValidacaoQuantidade import validar_quantidade
-from Validacoes.ValidacaoEditar import validacao
-
+from Estoque.OpcoesEditar import editar_estoque
 
 def editar(estoque):
     if not estoque:
@@ -10,7 +6,10 @@ def editar(estoque):
         return
     
     while True:
+        print("Digite -Sair- para voltar para o Menu.\n")
         nome = input("Informe o nome do produto que deseja editar: ").upper().strip()
+        if nome == "SAIR":
+            break
         if nome not in estoque:
             print("Produto não encontrado, tente novamente.")
             continue
@@ -21,11 +20,12 @@ def editar(estoque):
                 escolha = int(input("\nDigite o numero:"))
                 if escolha in [1,2,3,4]:
                     if escolha == 4:
-                        break
+                        return
                     else:
-                        validacao(estoque, nome, escolha )
+                        editar_estoque(estoque, nome, escolha)
+                        break
                 else:
-                    print("Valor inválido, digite apenas 1, 2 ou 3")
+                    print("Valor inválido, digite apenas 1, 2, 3 ou 4.")
                     continue
             except ValueError:
                 print("Digite um valor valido.\n")

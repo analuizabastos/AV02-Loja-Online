@@ -5,8 +5,11 @@ from Validacoes.ValidacaoQuantidade import validar_quantidade
 def produtos(estoque):
     while True:
         while True:
+            print("Digite -Sair- para voltar para o Menu.\n")
             nome = input("\nNome do produto: ").upper().strip()
             try:
+                if nome == "SAIR":
+                    return
                 validar_nome(nome)
                 break 
             except ValueError as erro:

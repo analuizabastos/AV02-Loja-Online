@@ -1,4 +1,4 @@
-from Estoque.CadastroEstoque import produtos
+from Estoque.CadastroProduto import produtos
 from Estoque.ExcluirProduto import RemoverProduto
 from Estoque.EditarEstoque import editar
 
@@ -25,8 +25,7 @@ def menuEstoque():
             elif escolha2 == 4:
                 editar(estoque)
             else:
-                print("Voltando ao menu principal...")
+                print("Sessão finalizada.")
                 break
         except ValueError:
             print("Digite um valor válido.")
-    return estoque

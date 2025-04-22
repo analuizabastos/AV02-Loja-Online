@@ -1,6 +1,7 @@
 def login(usuarios):
     contador = 0
     while True:
+        print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.\n")
         usuario_temp = input("Digite o usuario: ").upper()
         if usuario_temp in usuarios:
             print("Usuario correto!\n")
@@ -9,7 +10,6 @@ def login(usuarios):
             return False
         else:
             print("Usuario nao encontrado. Tente Novamente!")
-            print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.\n")
     while contador < 3:
         senha_temp = input("Digite sua senha: ").upper()
         if usuarios[usuario_temp] == senha_temp:
@@ -17,6 +17,8 @@ def login(usuarios):
             return True
         elif senha_temp == "SAIR":
             return False
+        elif contador == 2:
+            print("Senha incorreta. Ultima tentativa.")
         else: 
             print("Senha incorreta. Tente novamente!")
             print("Digite -Sair- para voltar para o Menu Principal.")
