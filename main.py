@@ -1,7 +1,7 @@
 from CadastroUsuario import cadastro
 from Validacoes.ValidacaoLogin import login
 from Estoque.MenuEstoque import menuEstoque
-from db.db import criar_conexao
+from config.db import criar_conexao
 
 criar_conexao()
 if not criar_conexao():

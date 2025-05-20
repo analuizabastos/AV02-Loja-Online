@@ -11,6 +11,6 @@ def criar_conexao():
         )
         print("Conexão com o PostgreSQL estabelecida com sucesso!")
         return conn
-    except erro as e:
+    except Exception as e:
         print(f"Erro ao conectar ao PostgreSQL: {e}")
         return None
