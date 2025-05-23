@@ -1,30 +1,36 @@
-def login(usuarios):
+from Services.user_services import buscar_usuario
+
+def login(conn):
     contador = 0
     while True:
-        print("Se ainda nao possui cadastro, digite -Sair- para voltar para o Menu Principal.\n")
-        usuario_temp = input("Digite o usuario: ").upper()
-        if usuario_temp in usuarios:
-            print("Usuario correto!\n")
+        print("Se ainda não possui cadastro, digite -SAIR- para voltar ao menu principal.")
+        usuario_temp = input("Digite o nome de usuário: ").strip().upper()
+
+        if usuario_temp == "SAIR":
+            return None
+
+        resultado = buscar_usuario(conn, usuario_temp)
+
+        if resultado:
+            nome_usuario_bd, senha_bd, tipo = resultado
             break
-        elif usuario_temp == "SAIR":
-            return False
         else:
-            print("Usuario nao encontrado. Tente Novamente!")
+            print("Usuário não encontrado. Tente novamente.")
+
     while contador < 3:
-        senha_temp = input("Digite sua senha: ").upper()
-        if usuarios[usuario_temp] == senha_temp:
-            print("Login validado com sucesso!")
-            return True
-        elif senha_temp == "SAIR":
-            return False
-        elif contador == 2:
-            print("Senha incorreta. Ultima tentativa.")
-        else: 
-            print("Senha incorreta. Tente novamente!")
-            print("Digite -Sair- para voltar para o Menu Principal.")
-            contador+=1
-    print("Número máximo de tentativas excedido. Retornando ao menu principal.")
-    return False 
-    
+        senha_input = input("Digite sua senha: ").strip()
+        if senha_input == senha_bd:
+            print(f"Login validado com sucesso! Tipo de usuário: {tipo}")
+            return {"usuario": nome_usuario_bd, "tipo": tipo}
+        elif senha_input.upper() == "SAIR":
+            return None
+        else:
+            contador += 1
+            print(f"Senha incorreta. Tentativa {contador}/3.")
+
+    print("Número máximo de tentativas excedido.")
+    return None
+
+
         
     
