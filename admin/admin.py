@@ -14,6 +14,7 @@ def admin_panel(conn):
             if escolha in [1,2,3,4,5]:
                 if escolha == 1:
                     cadastro(conn)
+                    continue
                 elif escolha == 2:
                     pass
                 elif escolha == 3:

@@ -9,22 +9,21 @@ def login(conn):
             return None
         resultado = buscar_usuario(conn, usuario_temp)
         if resultado:
-            nome_usuario_bd, senha_bd, tipo = resultado
+            nome_bd, tipo, usuario_bd, senha_bd = resultado
             break
         else:
             print("Usuário não encontrado. Tente novamente.")
     while contador < 3:
-        senha_input = input("Digite sua senha: ").strip()
-        if senha_input == senha_bd:
+        senha_temp = input("Digite sua senha: ").strip()
+        if senha_temp == senha_bd:
             print(f"Login validado com sucesso! Tipo de usuário: {tipo}")
-            return {"usuario": nome_usuario_bd, "tipo": tipo}
-        elif senha_input.upper() == "SAIR":
+            return {"usuario": nome_bd, "tipo": tipo}
+        elif senha_temp.upper() == "SAIR":
             return None
         else:
             contador += 1
             print(f"Senha incorreta. Tentativa {contador}/3.")
     print("Número máximo de tentativas excedido.")
-    return {"usuario": nome_usuario_bd, "tipo": tipo}
 
 
         

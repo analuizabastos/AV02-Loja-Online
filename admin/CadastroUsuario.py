@@ -6,7 +6,7 @@ def cadastro(conn):
     while True:
         print("Utilize letras, sem caracteres especiais.")
         print("Digite -Sair- para voltar para o Menu Principal.\n")
-        nome_cadastro = input("Digite seu nome:").upper()
+        nome_cadastro = input("Digite seu nome:").upper().strip()
         try:    
             for caractere in nome_cadastro:
                 if not caractere.isalpha():
@@ -23,7 +23,7 @@ def cadastro(conn):
         print("Qual o tipo do usuario\n")
         print("1- Comum\n")
         print("2- Master\n")
-        tipo = int(input("Digite o numero:")).strip()
+        tipo = int(input("Digite o numero:").strip())
         try:
             if tipo not in [1,2]:
                 raise ValueError("Valor invalido. Digite entre 1 ou 2.")
@@ -39,6 +39,7 @@ def cadastro(conn):
                     raise ValueError("Opcao invalida. Digite SIM ou NAO.")
             else:
                 tipo = "Comum"
+                break
         except ValueError as erro:
             print(erro)
     while True:
@@ -51,7 +52,7 @@ def cadastro(conn):
                     raise ValueError("Usuario invalido. Tente novamente!")
             if not usuario_cadastro:
                 raise ValueError("Usuário inválido. Não pode ser vazio ou só espaços!\n")
-            verificacao = buscar_usuario(usuario_cadastro)
+            verificacao = buscar_usuario(conn, usuario_cadastro)
             if verificacao:
                 print("Usuario ja cadastrado. Tente novamente!")    
                 continue
@@ -76,6 +77,6 @@ def cadastro(conn):
         except ValueError as erro:
             print(erro)
     
-    cadastro_banco = cadastro_usuario(nome_cadastro, tipo, usuario_cadastro, senha_cadastro)
+    cadastro_banco = cadastro_usuario(conn, nome_cadastro, tipo, usuario_cadastro, senha_cadastro)
     if cadastro_banco:
         print("Usuario cadastrado com sucesso.\n")
