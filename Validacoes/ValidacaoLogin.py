@@ -5,18 +5,14 @@ def login(conn):
     while True:
         print("Se ainda não possui cadastro, digite -SAIR- para voltar ao menu principal.")
         usuario_temp = input("Digite o nome de usuário: ").strip().upper()
-
         if usuario_temp == "SAIR":
             return None
-
         resultado = buscar_usuario(conn, usuario_temp)
-
         if resultado:
             nome_usuario_bd, senha_bd, tipo = resultado
             break
         else:
             print("Usuário não encontrado. Tente novamente.")
-
     while contador < 3:
         senha_input = input("Digite sua senha: ").strip()
         if senha_input == senha_bd:
@@ -27,9 +23,8 @@ def login(conn):
         else:
             contador += 1
             print(f"Senha incorreta. Tentativa {contador}/3.")
-
     print("Número máximo de tentativas excedido.")
-    return None
+    return {"usuario": nome_usuario_bd, "tipo": tipo}
 
 
         

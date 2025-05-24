@@ -1,6 +1,7 @@
 from Validacoes.ValidacaoLogin import login
 from Estoque.MenuEstoque import menuEstoque
 from config.db import criar_conexao
+from admin.admin import admin_panel
 
 conn = criar_conexao() 
 if conn is None:
@@ -14,11 +15,12 @@ while True:
         escolha = int(input("Digite um número: "))
         if escolha == 1:
             acesso = login(conn)
-            if acesso: 
+            if acesso["tipo"] == "MASTER": 
                 print(f"\nBem-vindo ao sistema, {acesso['usuario']} ({acesso['tipo']})\n")
-                menuEstoque(conn)
+                admin_panel(conn)
             else:
-                print("Voltando ao Menu Principal...")
+                print(f"\nBem-vindo ao sistema, {acesso['usuario']}")
+                menuEstoque(conn)
         elif escolha == 2:
             print("Sessão finalizada.")
             conn.close()

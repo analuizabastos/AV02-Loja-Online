@@ -1,4 +1,4 @@
-def cadastro(usuarios):
+def cadastro():
     print("\n---- Cadastro de Usuarios ----")
     while True:
         print("Utilize letras e numeros, sem espacos ou caracteres especiais.")

@@ -1,6 +1,6 @@
 from admin.CadastroUsuario import cadastro
 
-def admin_panel(usuarios):
+def admin_panel():
     while True:
         print("Painel do Administrador")
         print("1 - Cadastrar novo usuário")
@@ -13,7 +13,7 @@ def admin_panel(usuarios):
             escolha = int(input("Digite um numero: "))
             if escolha in [1,2,3,4,5]:
                 if escolha == 1:
-                    cadastro(usuarios)
+                    cadastro()
                 elif escolha == 2:
                     pass
                 elif escolha == 3:
