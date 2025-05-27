@@ -1,5 +1,5 @@
-from Services.user_services import buscar_usuario
-from Services.user_services import cadastro_usuario
+from services.user_services import buscar_usuario
+from services.user_services import cadastro_usuario
 
 def cadastro(conn):
     print("\n---- Cadastro de Usuarios ----")

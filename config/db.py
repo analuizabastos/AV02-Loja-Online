@@ -7,7 +7,7 @@ def criar_conexao():
             host="localhost",  # Ou o endereço do seu servidor PostgreSQL
             database="postgres",
             user="postgres",
-            password="post"
+            password="8692"
         )
         print("Conexão com o PostgreSQL estabelecida com sucesso!")
         return conn

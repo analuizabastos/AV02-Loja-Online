@@ -1,4 +1,4 @@
-from Services.user_services import buscar_usuario
+from services.user_services import buscar_usuario
 
 def login(conn):
     contador = 0

@@ -15,12 +15,13 @@ while True:
         escolha = int(input("Digite um número: "))
         if escolha == 1:
             acesso = login(conn)
-            if acesso["tipo"] == "MASTER": 
-                print(f"\nBem-vindo ao sistema, {acesso['usuario']} ({acesso['tipo']})\n")
-                admin_panel(conn)
-            else:
-                print(f"\nBem-vindo ao sistema, {acesso['usuario']}")
-                menuEstoque(conn)
+            if acesso is not None:
+                if acesso["tipo"] == "MASTER": 
+                    print(f"\nBem-vindo ao sistema, {acesso['usuario']} ({acesso['tipo']})\n")
+                    admin_panel(conn)
+                else:
+                    print(f"\nBem-vindo ao sistema, {acesso['usuario']}")
+                    menuEstoque(conn)
         elif escolha == 2:
             print("Sessão finalizada.")
             conn.close()
