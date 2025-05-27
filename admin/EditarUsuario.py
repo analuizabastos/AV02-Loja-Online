@@ -1,4 +1,4 @@
-from Services.user_services import buscar_usuario, editar_usuario
+from services.user_services import buscar_usuario, editar_usuario
 
 def menu_editar_usuario(conn):
     print("\n--- Edição de Usuário ---")

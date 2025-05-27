@@ -2,7 +2,7 @@ from Estoque.CadastroProduto import produtos
 from Estoque.ExcluirProduto import RemoverProduto
 from Estoque.EditarEstoque import editar
 
-def menuEstoque():
+def menuEstoque(conn):
     estoque = {}
     while True:
         print("----Estoque da Loja X----")

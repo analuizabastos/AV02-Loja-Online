@@ -4,11 +4,14 @@ def criar_conexao():
     conn = None
     try:
         conn = psycopg2.connect(
-            host="localhost",  # Ou o endereço do seu servidor PostgreSQL
+            host="localhost", 
             database="postgres",
             user="postgres",
-            password="8692"
+            password="post"
         )
+        cursor = conn.cursor()
+        cursor.execute("SET search_path TO lojaonline;")
+        conn.commit()
         print("Conexão com o PostgreSQL estabelecida com sucesso!")
         return conn
     except Exception as e:

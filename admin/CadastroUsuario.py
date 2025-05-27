@@ -6,7 +6,7 @@ def cadastro(conn):
     while True:
         print("Utilize letras, sem caracteres especiais.")
         print("Digite -Sair- para voltar para o Menu Principal.\n")
-        nome_cadastro = input("Digite seu nome:").upper().strip()
+        nome_cadastro = input("Digite seu nome: ").upper().strip()
         try:    
             for caractere in nome_cadastro:
                 if not caractere.isalpha():
@@ -20,11 +20,11 @@ def cadastro(conn):
         except ValueError as erro:
             print(erro)
     while True: 
-        print("Qual o tipo do usuario\n")
-        print("1- Comum\n")
+        print("Qual o tipo do usuario?\n")
+        print("1- Comum")
         print("2- Master\n")
-        tipo = int(input("Digite o numero:").strip())
         try:
+            tipo = int(input("Digite o numero: ").strip())
             if tipo not in [1,2]:
                 raise ValueError("Valor invalido. Digite entre 1 ou 2.")
             if tipo == 2:
