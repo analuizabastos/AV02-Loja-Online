@@ -1,1 +1,8 @@
 env/
+config/db.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sql
+*.dump

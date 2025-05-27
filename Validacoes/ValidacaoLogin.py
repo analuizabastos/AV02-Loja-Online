@@ -16,7 +16,7 @@ def login(conn):
     while contador < 3:
         senha_temp = input("Digite sua senha: ").strip()
         if senha_temp == senha_bd:
-            print(f"Login validado com sucesso! Tipo de usuário: {tipo}")
+            print(f"Login validado com sucesso!")
             return {"usuario": nome_bd, "tipo": tipo}
         elif senha_temp.upper() == "SAIR":
             return None
