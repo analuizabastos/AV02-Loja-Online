@@ -2,7 +2,7 @@ from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
 from Validacoes.Validarusuario import validar_usuario
-from services.user_services import adicionar_produtos
+from services.estoque_services import adicionar_produtos
 
 def produtos(conn):
     while True:

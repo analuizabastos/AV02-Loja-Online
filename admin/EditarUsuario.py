@@ -19,7 +19,7 @@ def menu_editar_usuario(conn):
         print("3 - Editar Login")
         print("4 - Editar Senha")
         print("5 - Confirmar e Salvar Alterações")
-        print("0 - Cancelar")
+        print("0 - Sair")
 
         escolha = input("Digite uma opção: ").strip()
 

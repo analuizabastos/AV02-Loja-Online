@@ -1,5 +1,5 @@
 from Estoque.Mostrarestoque import exibir_estoque
-from services.user_services import excluir_produto
+from services.estoque_services import excluir_produto
 
 def remover_Produto(conn): 
 

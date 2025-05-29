@@ -1,6 +1,6 @@
 from Estoque.Mostrarestoque import exibir_estoque
-from services.user_services import editar_estoque
-from Validacoes.ValidarIdProduto import validar_idproduto
+from services.estoque_services import editar_estoque
+from Validacoes.ValidarIDProduto import validar_idproduto
 
 def editar(conn):
     while True:

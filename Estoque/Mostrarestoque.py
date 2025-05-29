@@ -1,4 +1,4 @@
-from services.user_services import mostrar_estoque
+from services.estoque_services import mostrar_estoque
 
 def exibir_estoque(conn):
     print("=" * 100)

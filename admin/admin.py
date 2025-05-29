@@ -1,5 +1,6 @@
 from admin.CadastroUsuario import cadastro
 from admin.EditarUsuario import menu_editar_usuario
+from admin.ExcluirUsuario import menu_excluir_usuario
 def admin_panel(conn):
     while True:
         print("Painel do Administrador")
@@ -19,7 +20,8 @@ def admin_panel(conn):
                     menu_editar_usuario(conn)
                     continue
                 elif escolha == 3:
-                    pass
+                    menu_excluir_usuario(conn)
+                    continue
                 elif escolha == 4:
                     pass
                 else:

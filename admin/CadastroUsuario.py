@@ -5,7 +5,7 @@ def cadastro(conn):
     print("\n---- Cadastro de Usuarios ----")
     while True:
         print("Utilize letras, sem caracteres especiais.")
-        print("Digite -Sair- para voltar para o Menu Principal.\n")
+        print("Digite -Sair- para voltar para o Menu Administrativo.\n")
         nome_cadastro = input("Digite seu nome: ").upper().strip()
         try:    
             for caractere in nome_cadastro:
