@@ -84,3 +84,25 @@ def mostrar_estoque(conn):
     finally:
         if cursor:
             cursor.close
+
+def excluir_produto(conn, exluir_id):
+    cursor = None
+    try:
+        cursor = conn.cursor()
+        query = "DELETE FROM produtos WHERE id_produto = %s"
+        cursor.execute(query, (exluir_id,))
+        conn.commit()
+        if cursor.rowcount > 0:
+            print("produto excluido com sucesso")
+            return True
+        else:
+            print("Produto não encontrado")
+            return False
+    except Exception as e:
+        if conn:
+            conn.rollback()
+        print(f"Erro ao tentar excluir o produto: {e}")
+        return False
+    finally:
+        if cursor:
+            cursor.close

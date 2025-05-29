@@ -1,5 +1,5 @@
 from Estoque.CadastroProduto import produtos
-from Estoque.ExcluirProduto import RemoverProduto
+from Estoque.ExcluirProduto import remover_Produto
 from Estoque.EditarEstoque import editar
 from Estoque.Mostrarestoque import exibir_estoque
 
@@ -16,7 +16,7 @@ def menuEstoque(conn):
                 elif escolha2 == 2:
                     exibir_estoque(conn)
                 elif escolha2 == 3:
-                    print("Erro")
+                    remover_Produto(conn)
                 elif escolha2 == 4:
                     print("Erro")
                 else:
