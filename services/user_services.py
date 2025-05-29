@@ -50,3 +50,37 @@ def editar_usuario(conn, login_atual, nome=None, tipo=None, novo_login=None, sen
     except Exception as e:
         print(f"Erro ao editar usuário: {e}")
         return False
+
+def adicionar_produtos(conn, nome, quantidade, preco, id_usuario, id_categoria):
+    cursor = None
+    try:
+        cursor = conn.cursor()
+        query = "INSERT into PRODUTOS (nome, quantidade, valor_produto, id_usuario, id_categoria) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query,(nome, quantidade, preco, id_usuario, id_categoria))
+        conn.commit()
+        print(f"Produto: {nome} foi cadastrado no banco de dados com sucesso")
+        return True
+    except Exception as e:
+        if conn:
+            conn.rollback()
+            print(f"Erro ao cadastrar produtos: {e}")
+            return False
+    finally:
+        if cursor:
+            cursor.close()
+
+def mostrar_estoque(conn):
+    cursor = None
+    try:
+        cursor = conn.cursor()
+        query = "SELECT id_produto, nome, quantidade, valor_produto, id_usuario, id_categoria FROM PRODUTOS ORDER BY nome"
+        cursor.execute(query)
+        conn.commit()
+        produtos = cursor.fetchall()
+        return produtos
+    except Exception as e:
+        print(f"Erro ao mostrar o estoque: {e}")
+        return []
+    finally:
+        if cursor:
+            cursor.close
