@@ -18,7 +18,7 @@ def menuEstoque(conn):
                 elif escolha2 == 3:
                     remover_Produto(conn)
                 elif escolha2 == 4:
-                    print("Erro")
+                    editar(conn)
                 else:
                     print("Sessão finalizada.")
                     break

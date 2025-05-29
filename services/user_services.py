@@ -106,3 +106,46 @@ def excluir_produto(conn, exluir_id):
     finally:
         if cursor:
             cursor.close
+
+def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=None, id_categoria=None):
+    cursor = None
+    try:
+        campos = []
+        valores = []
+        cursor = conn.cursor()
+        if nome is not None:
+            campos.append("nome = %s")
+            valores.append(nome)
+        if quantidade is not None:
+            campos.append("quantidade = %s")
+            valores.append(quantidade)
+        if valor_produto is not None:
+            campos.append("valor_produto = %s")
+            valores.append(valor_produto)
+        if id_categoria is not None:
+            campos.append("id_categoria = %s")
+            valores.append(id_categoria)
+        
+        valor = ", ".join(campos)
+
+        valores.append(id_editar)
+
+        query = f"UPDATE produtos SET {valor} WHERE id_produto = %s;"
+        cursor.execute(query, tuple(valores))
+        conn.commit()
+
+        if cursor.rowcount > 0:
+            print("O produto foi atualizado com sucesso")
+            return True
+        else:
+            print("o produto não foi editado")
+            return False
+    except Exception as e:
+        if conn:
+            conn.rollback()
+            print(f"Erro ao editar o produto: {e}")
+            return False
+    finally:
+        if cursor:
+            cursor.close()
+        
