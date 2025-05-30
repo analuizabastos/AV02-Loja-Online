@@ -1,4 +1,7 @@
 from services.user_services import buscar_usuario, editar_usuario
+from Validacoes.ValidacaoNome import validar_nome
+from Validacoes.ValidacaoUsuario import validar_usuario
+from Validacoes.ValidacaoSenha import validar_senha
 
 def menu_editar_usuario(conn):
     print("\n--- Edição de Usuário ---")
@@ -23,36 +26,75 @@ def menu_editar_usuario(conn):
 
         escolha = input("Digite uma opção: ").strip()
 
-        nome = tipo = novo_login = senha = None
+        nome = tipo = login = senha = None
 
         if escolha == '1':
-            nome = input("Digite o novo nome: ").strip().upper()
-        elif escolha == '2':
-            tipo = int(input("Escolha o novo tipo (1- Master/ 2- Comum)\n: "))
-            try:
-                if tipo not in [1,2]:
-                    raise ValueError("Valor invalido. Digite entre 1 ou 2.")
-                if tipo == 2:
-                    print("Atencao! Usuarios Master tem acesso a todo o sistema.")
-                    verificacao = input("Deseja confirmar? Digite 'SIM' ou 'NAO'").upper().strip()
-                    if verificacao == "SIM":
-                        tipo = "Master"
-                        break
-                    elif verificacao == "NAO":
-                        continue
-                    else:
-                        raise ValueError("Opcao invalida. Digite SIM ou NAO.")
-                else:
-                    tipo = "Comum"
+            while True:
+                print("Digite -Sair- para voltar para o Menu Editar.\n")
+                novo_nome = input("Digite o novo nome: ").upper()
+                if novo_nome == "SAIR":
                     break
-            except ValueError as erro:
-                print(erro)
+                try:
+                    validar_nome(novo_nome)
+                    nome = novo_nome
+                    break 
+                except ValueError as erro:
+                    print(erro)
+        elif escolha == '2':
+            while True:
+                tipo = int(input("Escolha o novo tipo (1- Master/ 2- Comum)\n: "))
+                try:
+                    if tipo not in [1,2]:
+                        raise ValueError("Valor invalido. Digite entre 1 ou 2.")
+                    if tipo == 2:
+                        print("Atencao! Usuarios Master tem acesso a todo o sistema.")
+                        verificacao = input("Deseja confirmar? Digite 'SIM' ou 'NAO'").upper().strip()
+                        if verificacao == "SIM":
+                            tipo = "Master"
+                            break
+                        elif verificacao == "NAO":
+                            continue
+                        else:
+                            raise ValueError("Opcao invalida. Digite SIM ou NAO.")
+                    else:
+                        tipo = "Comum"
+                        break
+                except ValueError as erro:
+                    print(erro)
         elif escolha == '3':
-            novo_login = input("Digite o novo login: ").strip().upper()
+            while True:
+                print("Utilize letras e numeros, sem espacos ou caracteres especiais.")
+                print("Digite -Sair- para voltar para o Menu Editar.\n")
+                novo_login = input("Digite o novo login: ").strip().upper()
+                if novo_login == "SAIR":
+                        break
+                try:
+                    validar_usuario(novo_login)
+                except ValueError as erro:
+                    print(erro)
+                verificacao = buscar_usuario(conn, novo_login)    
+                if verificacao:
+                    print("Usuario ja cadastrado. Tente novamente!")    
+                    continue
+                else:
+                    login = novo_login
+                    break
         elif escolha == '4':
-            senha = input("Digite a nova senha: ").strip().upper()
+            while True:
+                print("\nUtilize letras e numeros, sem espacos ou caracteres especiais. Minimo de 6 caracteres.")
+                print("Digite -Sair- para voltar para o Menu Editar.\n")
+                nova_senha = input("Digite a sua senha: ").upper().strip()
+                if nova_senha == "SAIR":
+                    break
+                try:
+                    validar_senha(nova_senha)
+                    senha = nova_senha
+                    break
+                except ValueError as erro:
+                    print(erro)
+                
         elif escolha == '5':
-            sucesso = editar_usuario(conn, login_busca, nome, tipo, novo_login, senha)
+            sucesso = editar_usuario(conn, login_busca, nome, tipo, login, senha)
             if sucesso:
                 print("Usuário atualizado com sucesso!")
             else:
