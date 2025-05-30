@@ -4,10 +4,10 @@ def login(conn):
     contador = 0
     while True:
         print("Se ainda não possui cadastro, digite -SAIR- para voltar ao menu principal.")
-        usuario_temp = input("Digite o nome de usuário: ").strip().upper()
-        if usuario_temp == "SAIR":
+        usuario_bd = input("Digite o nome de usuário: ").strip().upper()
+        if usuario_bd == "SAIR":
             return None
-        resultado = buscar_usuario(conn, usuario_temp)
+        resultado = buscar_usuario(conn, usuario_bd)
         if resultado:
             nome_bd, tipo, usuario_bd, senha_bd = resultado
             break
