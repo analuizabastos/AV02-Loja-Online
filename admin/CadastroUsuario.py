@@ -1,7 +1,7 @@
 from services.user_services import buscar_usuario
 from services.user_services import cadastro_usuario
 from Validacoes.ValidacaoNome import validar_nome
-from Validacoes.ValidacaoNomeUsuario import validar_usuario
+from Validacoes.ValidacaoUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
 from config.seguranca import criptografar
 

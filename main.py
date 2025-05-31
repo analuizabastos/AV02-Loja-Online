@@ -1,13 +1,11 @@
-from Validacoes.ValidacaoLogin import login
+from Validacoes.Login import login
 from Estoque.MenuEstoque import menuEstoque
 from config.db import criar_conexao
 from admin.admin import admin_panel
-
 conn = criar_conexao() 
 if conn is None:
     print("Erro ao conectar ao banco. Encerrando sistema.")
     exit()
-
 while True:
     print("\n--- Estoque da loja X ---\n")
     print("1-Login\n2-Sair\n")
