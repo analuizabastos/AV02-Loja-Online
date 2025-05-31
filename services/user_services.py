@@ -1,7 +1,7 @@
 def buscar_usuario(conn, login):
     try:
         cursor = conn.cursor()
-        query = "SELECT nome, tipo, login, senha FROM usuarios WHERE login = %s"
+        query = "SELECT id_usuario, nome, tipo, login, senha FROM usuarios WHERE login = %s"
         cursor.execute(query, (login,))
         return cursor.fetchone()
     except Exception as e:

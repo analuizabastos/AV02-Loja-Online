@@ -21,7 +21,7 @@ while True:
                     admin_panel(conn)
                 else:
                     print(f"\nBem-vindo ao sistema, {acesso['usuario']}")
-                    menuEstoque(conn)
+                    menuEstoque(conn, acesso)
         elif escolha == 2:
             print("Sessão finalizada.")
             conn.close()

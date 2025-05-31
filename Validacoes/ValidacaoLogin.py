@@ -9,7 +9,7 @@ def login(conn):
             return None
         resultado = buscar_usuario(conn, usuario_bd)
         if resultado:
-            nome_bd, tipo, usuario_bd, senha_bd = resultado
+            id_usuario, nome_bd, tipo, usuario_bd, senha_bd = resultado
             break
         else:
             print("Usuário não encontrado. Tente novamente.")
@@ -17,7 +17,7 @@ def login(conn):
         senha_temp = input("Digite sua senha: ").strip()
         if senha_temp == senha_bd:
             print(f"Login validado com sucesso!")
-            return {"usuario": nome_bd, "tipo": tipo}
+            return {"id_usuario": id_usuario, "usuario": nome_bd, "tipo": tipo}
         elif senha_temp.upper() == "SAIR":
             return None
         else:

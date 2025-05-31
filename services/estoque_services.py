@@ -17,9 +17,8 @@ def adicionar_produtos(conn, nome, quantidade, preco, id_usuario, id_categoria):
 def mostrar_estoque(conn):
     try:
         cursor = conn.cursor()
-        query = "SELECT id_produto, nome, quantidade, valor_produto, id_usuario, id_categoria FROM PRODUTOS ORDER BY nome"
+        query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIAS c on c.id_categoria = p.id_categoria ORDER BY p.nome"
         cursor.execute(query)
-        conn.commit()
         produtos = cursor.fetchall()
         return produtos
     except Exception as e:
@@ -27,7 +26,7 @@ def mostrar_estoque(conn):
         return []
     finally:
         if cursor:
-            cursor.close
+            cursor.close()
 
 def excluir_produto(conn, excluir_id):
     try:

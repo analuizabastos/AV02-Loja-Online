@@ -26,7 +26,7 @@ def admin_panel(conn):
                     pass
                 else:
                     print("Sessão finalizada.")
-                    exit()
+                    return
             else:
                 print("Digite um valor do menu.\n")
         except ValueError:
