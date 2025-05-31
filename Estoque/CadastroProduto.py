@@ -3,10 +3,10 @@ from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
 from services.estoque_services import adicionar_produtos
 
-def produtos(conn, id_usuario):
+def cadastro_produto(conn, id_usuario):
     while True:
         while True:
-            print("Digite -Sair- para voltar para o Menu.\n")
+            print("\nDigite -Sair- para voltar para o Menu.")
             nome = input("\nNome do produto: ").upper()
             try:
                 if nome == "SAIR":
@@ -53,9 +53,11 @@ def produtos(conn, id_usuario):
                 print("Digite um valor válido")
         while True:
             try:
-                quantidade = (input("Quantidade do produto: ")).strip()
-                if quantidade.upper() == "SAIR":
-                    return
+                print("Digite -Sair- para voltar para o Menu.\n")
+                quant = (input("Quantidade do produto: ")).strip()
+                if quant.upper() == "SAIR":
+                    break
+                quantidade = int(quant)
                 validar_quantidade(quantidade)
                 break
             except ValueError as erro:

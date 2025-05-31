@@ -15,4 +15,4 @@ def exibir_estoque(conn):
             print(f"{id_produto:<5} {nome:<20} {quantidade:<12} R${valor_produto:<11.2f} {nome_categoria:<15}")
             print("-" * 100)
     else:
-        print("Nenhum produto dentro do estoque")
+        print("Nenhum produto dentro do estoque.")
