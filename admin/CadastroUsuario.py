@@ -3,6 +3,7 @@ from services.user_services import cadastro_usuario
 from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoNomeUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
+from config.seguranca import criptografar
 
 def cadastro(conn):
     print("\n---- Cadastro de Usuarios ----")
@@ -67,6 +68,7 @@ def cadastro(conn):
         except ValueError as erro:
             print(erro)
     
-    cadastro_banco = cadastro_usuario(conn, nome_cadastro, tipo, usuario_cadastro, senha_cadastro)
+    senha_bd = criptografar(senha_cadastro)
+    cadastro_banco = cadastro_usuario(conn, nome_cadastro, tipo, usuario_cadastro, senha_bd)
     if cadastro_banco:
         print("Usuario cadastrado com sucesso.\n")
