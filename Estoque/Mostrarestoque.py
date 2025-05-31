@@ -1,9 +1,9 @@
 from services.estoque_services import mostrar_estoque
 
 def exibir_estoque(conn):
-    print("=" * 100)
+    print("-" * 100)
     print("                                ESTOQUE DE PRODUTOS")
-    print("=" * 100)
+    print("-" * 100)
 
     exibir_estoque = mostrar_estoque(conn)
 

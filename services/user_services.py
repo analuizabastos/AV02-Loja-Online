@@ -82,3 +82,16 @@ def excluir_usuario(conn, login):
         return None
     finally:
         cursor.close()
+
+def lista_de_usuarios(conn):
+    try:
+        cursor = conn.cursor()
+        query = "SELECT id_usuario, nome, tipo, login from USUARIOS"
+        cursor.execute(query)
+        usuarios = cursor.fetchall()
+        return usuarios
+    except Exception as e:
+        print(f"Erro ao listar usuários: {e}")
+        return []
+    finally:
+        cursor.close()
