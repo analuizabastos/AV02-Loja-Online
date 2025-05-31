@@ -7,6 +7,8 @@ def buscar_usuario(conn, login):
     except Exception as e:
         print(f"Erro ao buscar usuário: {e}")
         return None
+    finally:
+        cursor.close()
     
 def cadastro_usuario(conn, nome, tipo, login, senha):
     try:
@@ -16,26 +18,30 @@ def cadastro_usuario(conn, nome, tipo, login, senha):
         conn.commit()
         return True
     except Exception as e:
-        print(f"Erro ao cadastrar usuário: {e}")
-        return None
+            conn.rollback()
+            print(f"Erro ao cadastrar usuário: {e}")
+            return False
+    finally:
+        cursor.close()
     
 def editar_usuario(conn, login_atual, nome=None, tipo=None, novo_login=None, senha=None):
     try:
         cursor = conn.cursor()
         campos = []
         valores = []
-        if nome:
+        if nome is not None:
             campos.append("nome = %s")
             valores.append(nome)
-        if tipo:
+        if tipo is not None:
             campos.append("tipo = %s")
             valores.append(tipo)
-        if novo_login:
+        if novo_login is not None:
             campos.append("login = %s")
             valores.append(novo_login)
-        if senha:
+        if senha is not None:
             campos.append("senha = %s")
             valores.append(senha)
+
         if not campos:
             print("Nenhuma alteração foi feita.")
             return False
@@ -45,11 +51,19 @@ def editar_usuario(conn, login_atual, nome=None, tipo=None, novo_login=None, sen
 
         cursor.execute(query, valores)
         conn.commit()
-        return True
+        if cursor.rowcount > 0:
+            print("Cadastro editado com sucesso.")
+            return True
+        else:
+            print("Nenhum produto foi alterado.")
+            return False
 
     except Exception as e:
-        print(f"Erro ao editar usuário: {e}")
-        return False
+            conn.rollback()
+            print(f"Erro ao editar usuário: {e}")
+            return False
+    finally:
+        cursor.close()
 
 def excluir_usuario(conn, login):
     try:
@@ -60,7 +74,11 @@ def excluir_usuario(conn, login):
         if cursor.rowcount == 0:
             print("Nenhum usuário foi excluído.")
             return False
-        return True
+        else:
+            print("Usuário excluído com sucesso.")
+            return True
     except Exception as e:
         print(f"Erro ao excluir usuário: {e}")
         return None
+    finally:
+        cursor.close()

@@ -1,6 +1,6 @@
 from services.user_services import buscar_usuario, editar_usuario
 from Validacoes.ValidacaoNome import validar_nome
-from Validacoes.ValidacaoUsuario import validar_usuario
+from Validacoes.ValidacaoNomeUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
 
 def menu_editar_usuario(conn):
