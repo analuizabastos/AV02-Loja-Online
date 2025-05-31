@@ -35,10 +35,10 @@ def excluir_produto(conn, excluir_id):
         cursor.execute(query, (excluir_id,))
         conn.commit()
         if cursor.rowcount > 0:
-            print("produto excluido com sucesso")
+            print("Produto excluído com sucesso!")
             return True
         else:
-            print("Produto não encontrado")
+            print("Produto não encontrado.")
             return False
     except Exception as e:
         conn.rollback()
@@ -46,7 +46,7 @@ def excluir_produto(conn, excluir_id):
         return False
     finally:
         if cursor:
-            cursor.close
+            cursor.close()
 
 def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=None, id_categoria=None):
     cursor = conn.cursor()

@@ -3,7 +3,7 @@ def validar_idproduto (conn, id_produto):
     try:
         cursor = conn.cursor()
         query = "SELECT 1 FROM produtos WHERE id_produto = %s"
-        cursor.execute(query(id_produto, ))
+        cursor.execute(query, (id_produto,))
         resultado = cursor.fetchone()
         
         return resultado is not None

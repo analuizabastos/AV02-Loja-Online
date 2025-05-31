@@ -8,7 +8,7 @@ def exibir_estoque(conn):
     exibir_estoque = mostrar_estoque(conn)
 
     if exibir_estoque:
-        print(f"{'ID':<5} {'NOME':<20} {'QUANTIDADE':<12} {'VALOR':<15} {'ID_USUARIO':<12} {'NOME_CATEGORIA':<15}")
+        print(f"{'ID':<5} {'NOME':<20} {'QUANTIDADE':<12} {'VALOR':<15} {'NOME_CATEGORIA':<15}")
         print("-" * 100)
         for produtos in exibir_estoque:
             id_produto, nome, quantidade, valor_produto, nome_categoria = produtos

@@ -18,9 +18,8 @@ def editar(conn, acesso):
                 numero = input("Informe o id do produto que deseja editar: ").strip()
                 if numero.upper() == "SAIR":
                     return
-                produto = int(numero)
-                if validar_idproduto(conn, produto):
-                    id_produto = produto
+                id_produto = int(numero)
+                if validar_idproduto(conn, id_produto):
                     break
                 else:
                     print("Id inválido. Tente Novamente.")
@@ -53,8 +52,8 @@ def editar(conn, acesso):
                         while True:    
                             try:
                                 quantidade = (input("Quantidade do produto: ")).strip()
+                                validar_quantidade(quantidade)
                                 nova_quantidade = int(quantidade)
-                                validar_quantidade(nova_quantidade)
                                 break
                             except ValueError as erro:
                                 print(erro)
@@ -88,8 +87,8 @@ def editar(conn, acesso):
                     print("Valor inválido. Tente novamente.")
             while True:
                 try:
-                    print("Deseja salvar essa alterações? 1 - Sim 2 - Não")
-                    opcao = int(input("Digite um numero"))
+                    print("Deseja salvar essa alterações? \n1 - Sim \n2 - Não")
+                    opcao = int(input("Digite um número: "))
                     if opcao == 1:
                         sucesso = editar_estoque(conn, id_produto, novo_nome, nova_quantidade, novo_preco, nova_categoria)
                         if sucesso:
