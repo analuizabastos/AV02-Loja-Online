@@ -57,14 +57,15 @@ def cadastro_produto(conn, id_usuario):
                 quant = (input("Quantidade do produto: ")).strip()
                 if quant.upper() == "SAIR":
                     break
+                validar_quantidade(quant)
                 quantidade = int(quant)
-                validar_quantidade(quantidade)
                 break
             except ValueError as erro:
                 print(erro)
         while True:
             try:
                 print("Deseja cadastrar esse produto?\n1. Sim\n2. Não")
+                print(nome_produto, quantidade, valor_produto, id_usuario, id_categoria)
                 resposta = int(input("Digite um numero: "))
                 if resposta == 1:
                     sucesso = adicionar_produtos(conn, nome_produto, quantidade, valor_produto, id_usuario, id_categoria)

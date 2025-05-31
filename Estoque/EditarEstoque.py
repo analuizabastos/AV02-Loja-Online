@@ -5,7 +5,7 @@ from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
 
-def editar(conn):
+def editar(conn, acesso):
     while True:
         exibir_estoque(conn)
         novo_nome = None

@@ -17,7 +17,7 @@ def adicionar_produtos(conn, nome, quantidade, preco, id_usuario, id_categoria):
 def mostrar_estoque(conn):
     try:
         cursor = conn.cursor()
-        query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIAS c on c.id_categoria = p.id_categoria ORDER BY p.nome"
+        query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIA c on c.id_categoria = p.id_categoria ORDER BY p.nome"
         cursor.execute(query)
         produtos = cursor.fetchall()
         return produtos

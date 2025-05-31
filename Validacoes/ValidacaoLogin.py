@@ -17,7 +17,7 @@ def login(conn):
         senha_temp = input("Digite sua senha: ").strip()
         if senha_temp == senha_bd:
             print(f"Login validado com sucesso!")
-            return {"id_usuario": id_usuario, "usuario": nome_bd, "tipo": tipo}
+            return {"id": id_usuario, "usuario": nome_bd, "tipo": tipo}
         elif senha_temp.upper() == "SAIR":
             return None
         else:
