@@ -14,12 +14,12 @@ def menu_excluir_usuario(conn):
             print("Usuário não encontrado.")
             return
         
-        nome, tipo, login, senha = resultado
+        id_usuario, nome, tipo, login, senha = resultado
         
         while True:
             print(f"\nUsuário atual: Nome: {nome}, Tipo: {tipo}, Login: {login}")
             print("Deseja excluir esse usuario?")
-            print("Essa acao nao pode ser revertida.")
+            print("Essa ação nao pode ser revertida.")
             try:
                 escolha = int(input("1- Nao;\n 2-Sim."))
                 if escolha == 1:

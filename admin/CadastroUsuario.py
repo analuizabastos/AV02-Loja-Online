@@ -7,8 +7,8 @@ from Validacoes.ValidacaoSenha import validar_senha
 def cadastro(conn):
     print("\n---- Cadastro de Usuarios ----")
     while True:
-        print("Utilize letras, sem caracteres especiais.")
-        print("Digite -Sair- para voltar para o Menu Administrativo.\n")
+        print("\nUtilize letras, sem caracteres especiais.")
+        print("Digite -Sair- para voltar para o Menu Administrativo.")
         nome_cadastro = input("Digite seu nome: ").upper()
         try:
             if nome_cadastro == "SAIR":
@@ -24,7 +24,7 @@ def cadastro(conn):
         try:
             tipo = int(input("Digite o numero: ").strip())
             if tipo not in [1,2]:
-                raise ValueError("Valor invalido. Digite entre 1 ou 2.")
+                raise ValueError("Valor inválido. Digite entre 1 ou 2.")
             if tipo == 2:
                 print("Atencao! Usuarios Master tem acesso a todo o sistema.")
                 verificacao = input("Deseja confirmar? Digite 'SIM' ou 'NAO'").upper().strip()
@@ -41,8 +41,8 @@ def cadastro(conn):
         except ValueError as erro:
             print(erro)
     while True:
-        print("Utilize letras e numeros, sem espacos ou caracteres especiais.")
-        print("Digite -Sair- para voltar para o Menu Principal.\n")
+        print("\nUtilize letras e numeros, sem espacos ou caracteres especiais.")
+        print("Digite -Sair- para voltar para o Menu Principal.")
         usuario_cadastro = input("Digite seu usuario: ").upper().strip()
         try:
             if usuario_cadastro == "SAIR":

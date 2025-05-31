@@ -48,7 +48,7 @@ def menu_editar_usuario(conn):
                         raise ValueError("Valor invalido. Digite entre 1 ou 2.")
                     if tipo == 2:
                         print("Atencao! Usuarios Master tem acesso a todo o sistema.")
-                        verificacao = input("Deseja confirmar? Digite 'SIM' ou 'NAO'").upper().strip()
+                        verificacao = input("Digite 'SIM' ou 'NAO'\nDeseja confirmar? ").upper().strip()
                         if verificacao == "SIM":
                             tipo = "Master"
                             break
