@@ -1,5 +1,5 @@
 from services.user_services import buscar_usuario
-import bcrypt
+import bcrypt, getpass
 
 def login(conn):
     contador = 0
@@ -15,7 +15,7 @@ def login(conn):
         else:
             print("Usuário não encontrado. Tente novamente.")
     while contador < 3:
-        senha_temp = input("Digite sua senha: ").strip()
+        senha_temp = getpass.getpass("Digite sua senha: ").strip()
         if senha_temp.upper() == "SAIR":
             return None
         senha_bd = bcrypt.checkpw(
