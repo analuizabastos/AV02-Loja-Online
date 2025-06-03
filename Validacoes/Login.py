@@ -1,5 +1,6 @@
 from services.user_services import buscar_usuario
 import bcrypt, getpass
+from services.log_services import inserir_log
 
 def login(conn):
     contador = 0
@@ -14,6 +15,8 @@ def login(conn):
             break
         else:
             print("Usuário não encontrado. Tente novamente.")
+            inserir_log(conn, None, "LOGIN_FALHA", f"Tentativa de login com usuário inexistente '{usuario_bd}'", False)
+
     while contador < 3:
         senha_temp = getpass.getpass("Digite sua senha: ").strip()
         if senha_temp.upper() == "SAIR":
@@ -23,10 +26,13 @@ def login(conn):
         senha_hash.tobytes() if isinstance(senha_hash, memoryview) else senha_hash.encode('utf-8'))
         if senha_bd:
             print(f"Login validado com sucesso!")
+            inserir_log(conn, id_usuario, "LOGIN_SUCESSO", f"Usuário '{usuario_bd}'", True)
             return {"id": id_usuario, "usuario": nome_bd, "tipo": tipo}
         else:
             contador += 1
             print(f"Senha incorreta. Tentativa {contador}/3.")
+            inserir_log(conn, id_usuario, "LOGIN_FALHA", f"Senha incorreta. Tentativa {contador}/3.", False)
+
     
     print("Número máximo de tentativas excedido.")
     return None

@@ -21,10 +21,10 @@ while True:
             if acesso is not None:
                 if acesso["tipo"] == "MASTER": 
                     print(f"\nBem-vindo ao sistema, {acesso['usuario']} ({acesso['tipo']})\n")
-                    admin_panel(conn)
+                    admin_panel(conn, acesso["id"])
                 else:
                     print(f"\nBem-vindo ao sistema, {acesso['usuario']}")
-                    menuEstoque(conn, acesso)
+                    menuEstoque(conn, acesso["id"])
         elif escolha == 2:
             print("Sessão finalizada.")
             conn.close()

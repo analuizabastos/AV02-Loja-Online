@@ -4,8 +4,9 @@ from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
 from config.seguranca import criptografar
+from services.log_services import inserir_log
 
-def cadastro(conn):
+def cadastro(conn, id_usuario):
     print("\n---- Cadastro de Usuarios ----")
     while True:
         print("\nUtilize letras, sem caracteres especiais.")
@@ -72,3 +73,7 @@ def cadastro(conn):
     cadastro_banco = cadastro_usuario(conn, nome_cadastro, tipo, usuario_cadastro, senha_bd)
     if cadastro_banco:
         print("Usuario cadastrado com sucesso.\n")
+        inserir_log(conn, id_usuario, "CADASTRO_SUCESSO", f"Usuário '{usuario_cadastro}' cadastrado como '{tipo}'.", True)
+    else:
+        print("Erro ao cadastrar usuário.\n")
+        inserir_log(conn, id_usuario, "CADASTRO_FALHA", f"Falha ao cadastrar o usuário '{usuario_cadastro}'.", False)

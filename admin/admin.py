@@ -2,7 +2,8 @@ from admin.CadastroUsuario import cadastro
 from admin.EditarUsuario import menu_editar_usuario
 from admin.ExcluirUsuario import menu_excluir_usuario
 from admin.ListarUsuario import listar_usuarios
-def admin_panel(conn):
+
+def admin_panel(conn, id_usuario):
     while True:
         print("\nPainel do Administrador")
         print("1 - Cadastrar novo usuário")
@@ -16,13 +17,13 @@ def admin_panel(conn):
             escolha = int(input("Digite um numero: "))
             if escolha in [1,2,3,4,5,6]:
                 if escolha == 1:
-                    cadastro(conn)
+                    cadastro(conn, id_usuario)
                 elif escolha == 2:
-                    menu_editar_usuario(conn)
+                    menu_editar_usuario(conn, id_usuario)
                 elif escolha == 3:
-                    menu_excluir_usuario(conn)
+                    menu_excluir_usuario(conn, id_usuario)
                 elif escolha == 4:
-                    listar_usuarios(conn)
+                    listar_usuarios(conn, id_usuario)
                 elif escolha == 5:
                     pass
                 else:
