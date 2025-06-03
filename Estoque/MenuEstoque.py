@@ -2,10 +2,10 @@ from Estoque.CadastroProduto import cadastro_produto
 from Estoque.ExcluirProduto import remover_Produto
 from Estoque.EditarEstoque import editar
 from Estoque.Mostrarestoque import exibir_estoque
-from Estoque.AdicionarCategoria import adicionar_categorias
+from Estoque.AdicionarCategoria import Adicao_de_categorias
 from Estoque.Editarcategorias import editar_categorias
 
-def menuEstoque(conn, acesso):
+def menuEstoque(conn, id_usuario):
     while True:
         print("\n----Estoque da Loja X----")
         print("\nO que deseja fazer?")
@@ -14,15 +14,15 @@ def menuEstoque(conn, acesso):
             escolha = int(input("Digite um número: "))
             if escolha in [1,2,3,4,5,6,7]:
                 if escolha == 1:
-                    cadastro_produto(conn, acesso["id"])
+                    cadastro_produto(conn, id_usuario)
                 elif escolha == 2:
                     exibir_estoque(conn)
                 elif escolha == 3:
                     remover_Produto(conn)
                 elif escolha == 4:
-                    editar(conn, acesso["id"])
+                    editar(conn)
                 elif escolha == 5:
-                    adicionar_categorias(conn)
+                    Adicao_de_categorias(conn)
                 elif escolha == 6:
                     editar_categorias(conn)
                 else:

@@ -2,7 +2,7 @@ def validar_idcategoria(conn, id_categoria):
     cursor = None
     try:
         cursor = conn.cursor()
-        query = "SELECT COUNT 1 FROM categorias WHERE id_categoria = %s"
+        query = "SELECT 1 FROM categoria WHERE id_categoria = %s"
         cursor.execute(query, (id_categoria,))
         count = cursor.fetchone()[0]
         return count > 0

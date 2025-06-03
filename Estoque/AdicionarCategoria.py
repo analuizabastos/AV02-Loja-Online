@@ -2,8 +2,7 @@ from Estoque.MostrarCategorias import Exibir_categorias
 from Validacoes.ValidacaoNome import validar_nome
 from services.estoque_services import adicionar_categorias
 
-def Adicionar_Categorias(conn):
-    Exibir_categorias(conn)
+def Adicao_de_categorias(conn):
     while True:
         while True:
             print("\nDigite -Sair- para voltar para o Menu.")
@@ -22,7 +21,7 @@ def Adicionar_Categorias(conn):
                 print(nova_categoria)
                 resposta = int(input("Digite um numero: "))
                 if resposta == 1:
-                    sucesso = adicionar_categorias(conn, nova_categoria)
+                    sucesso = adicionar_categorias(conn, nome=nova_categoria)
                     if sucesso:
                         print("categoria cadastrada com sucesso")
                         break

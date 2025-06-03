@@ -65,7 +65,6 @@ def cadastro_produto(conn, id_usuario):
         while True:
             try:
                 print("Deseja cadastrar esse produto?\n1. Sim\n2. Não")
-                print(nome_produto, quantidade, valor_produto, id_usuario, id_categoria)
                 resposta = int(input("Digite um numero: "))
                 if resposta == 1:
                     sucesso = adicionar_produtos(conn, nome_produto, quantidade, valor_produto, id_usuario, id_categoria)

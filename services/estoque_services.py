@@ -90,10 +90,10 @@ def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=No
 def Exibir_categorias(conn):
     try:
         cursor = conn.cursor()
-        query = "SELECT id_categorias, nomes FROM categorias"
+        query = "SELECT id_categoria, nome FROM categoria"
         cursor.execute(query)
-        conn.commit()
-        return True
+        categorias = cursor.fetchall()
+        return categorias
     except Exception as e:
         print(f"Erro ao mostrar o categorias: {e}")
         return []
@@ -107,7 +107,7 @@ def adicionar_categorias(conn, nome):
     cursor = None
     try:
         cursor = conn.cursor()
-        query = "INSERT INTO categorias (nome) VALUES (%s)"
+        query = "INSERT INTO categoria (nome) VALUES (%s)"
         cursor.execute(query, (nome,))
         conn.commit()
         print(f"Categoria: {nome} foi adicionada com sucesso!")
@@ -135,7 +135,7 @@ def alterar_categorias(conn, id_categoria, novo_nome=None):
             print("Nenhum campo para editar foi fornecido.")
             return False
 
-        query = f"UPDATE categorias SET {', '.join(campos)} WHERE id_categorias = %s"
+        query = f"UPDATE categoria SET {', '.join(campos)} WHERE id_categoria = %s"
         valores.append(id_categoria)
         cursor.execute(query, tuple(valores))
         conn.commit()
@@ -150,6 +150,26 @@ def alterar_categorias(conn, id_categoria, novo_nome=None):
     except Exception as e:
         conn.rollback()
         print(f"Erro ao editar a categoria: {e}")
+        return False
+    finally:
+        if cursor:
+            cursor.close()
+
+def excluir_categoria_bd(conn, excluir_id):
+    try:
+        cursor = conn.cursor()
+        query = "DELETE FROM categoria WHERE id_categoria = %s"
+        cursor.execute(query, (excluir_id,))
+        conn.commit()
+        if cursor.rowcount > 0:
+            print("Categoria excluída com sucesso!")
+            return True
+        else:
+            print("Categoria não encontrado.")
+            return False
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao tentar excluir o Categoria: {e}")
         return False
     finally:
         if cursor:
