@@ -86,4 +86,71 @@ def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=No
     finally:
         if cursor:
             cursor.close()
+
+def Exibir_categorias(conn):
+    try:
+        cursor = conn.cursor()
+        query = "SELECT id_categorias, nomes FROM categorias"
+        cursor.execute(query)
+        conn.commit()
+        return True
+    except Exception as e:
+        print(f"Erro ao mostrar o categorias: {e}")
+        return []
+    finally:
+        if cursor:
+            cursor.close()
+
+
+
+def adicionar_categorias(conn, nome):
+    cursor = None
+    try:
+        cursor = conn.cursor()
+        query = "INSERT INTO categorias (nome) VALUES (%s)"
+        cursor.execute(query, (nome,))
+        conn.commit()
+        print(f"Categoria: {nome} foi adicionada com sucesso!")
+        return True
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao tentar cadastrar categorias: {e}")
+        return False
+    finally:
+        if cursor:
+            cursor.close()
+    
+def alterar_categorias(conn, id_categoria, novo_nome=None):
+    cursor = None
+    try:
+        cursor = conn.cursor()
+        campos = []
+        valores = []
+
+        if novo_nome is not None:
+            campos.append("nome = %s")
+            valores.append(novo_nome)
         
+        if not campos:
+            print("Nenhum campo para editar foi fornecido.")
+            return False
+
+        query = f"UPDATE categorias SET {', '.join(campos)} WHERE id_categorias = %s"
+        valores.append(id_categoria)
+        cursor.execute(query, tuple(valores))
+        conn.commit()
+
+        if cursor.rowcount > 0:
+            print(f"A categoria de ID {id_categoria} foi atualizada com sucesso!")
+            return True
+        else:
+            print(f"Nenhuma categoria encontrada com o ID ou nenhum dado alterado.")
+            return False
+            
+    except Exception as e:
+        conn.rollback()
+        print(f"Erro ao editar a categoria: {e}")
+        return False
+    finally:
+        if cursor:
+            cursor.close()
