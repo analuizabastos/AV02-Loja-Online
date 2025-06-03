@@ -3,6 +3,7 @@ from admin.EditarUsuario import menu_editar_usuario
 from admin.ExcluirUsuario import menu_excluir_usuario
 from admin.ListarUsuario import listar_usuarios
 from admin.ListarLogs import listar_logs
+from admin.ListarPedidos import listar_pedidos
 
 def admin_panel(conn, id_usuario):
     while True:
@@ -12,11 +13,12 @@ def admin_panel(conn, id_usuario):
         print("3 - Excluir usuário")
         print("4 - Listar usuários")
         print("5 - Exibir os logs")
-        print("6 - Sair")
+        print("6 - Exibir Pedidos")
+        print("7 - Sair")
         
         try:
             escolha = int(input("Digite um numero: "))
-            if escolha in [1,2,3,4,5,6]:
+            if escolha in [1,2,3,4,5,6,7]:
                 if escolha == 1:
                     cadastro(conn, id_usuario)
                 elif escolha == 2:
@@ -27,6 +29,8 @@ def admin_panel(conn, id_usuario):
                     listar_usuarios(conn)
                 elif escolha == 5:
                     listar_logs(conn)
+                elif escolha == 6:
+                    listar_pedidos(conn)
                 else:
                     print("Sessão finalizada.")
                     return
