@@ -5,6 +5,7 @@ from Validacoes.ValidacaoUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
 from config.seguranca import criptografar
 from services.log_services import inserir_log
+import getpass
 
 def cadastro(conn, id_usuario):
     print("\n---- Cadastro de Usuarios ----")
@@ -60,7 +61,7 @@ def cadastro(conn, id_usuario):
             print(erro)
     while True:
         print("\nUtilize letras e numeros, sem espacos ou caracteres especiais. Minimo de 6 caracteres.")
-        senha_cadastro = input("Digite a sua senha: ").upper().strip()
+        senha_cadastro = getpass.getpass("Digite a sua senha: ").upper().strip()
         try:
             if senha_cadastro == "SAIR":
                 return

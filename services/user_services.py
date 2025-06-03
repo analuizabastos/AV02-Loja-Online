@@ -24,7 +24,7 @@ def cadastro_usuario(conn, nome, tipo, login, senha):
     finally:
         cursor.close()
     
-def editar_usuario(conn, login_atual, nome=None, tipo=None, novo_login=None, senha=None):
+def editar_usuario(conn, id_usuario, nome=None, tipo=None, novo_login=None, senha=None):
     try:
         cursor = conn.cursor()
         campos = []
@@ -46,14 +46,15 @@ def editar_usuario(conn, login_atual, nome=None, tipo=None, novo_login=None, sen
             print("Nenhuma alteração foi feita.")
             return False
 
-        query = f"UPDATE usuarios SET {', '.join(campos)} WHERE login = %s"
-        valores.append(login_atual)
+        query = f"UPDATE usuarios SET {', '.join(campos)} WHERE id_usuario = %s"
+        valores.append(id_usuario)
 
         cursor.execute(query, valores)
         conn.commit()
         if cursor.rowcount > 0:
             print("Cadastro editado com sucesso.")
-            return True
+            alteracoes = [c.split(' =')[0] for c in campos]
+            return alteracoes
         else:
             print("Nenhum produto foi alterado.")
             return False

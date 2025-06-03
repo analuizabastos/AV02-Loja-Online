@@ -2,6 +2,7 @@ from admin.CadastroUsuario import cadastro
 from admin.EditarUsuario import menu_editar_usuario
 from admin.ExcluirUsuario import menu_excluir_usuario
 from admin.ListarUsuario import listar_usuarios
+from admin.ListarLogs import listar_logs
 
 def admin_panel(conn, id_usuario):
     while True:
@@ -23,9 +24,9 @@ def admin_panel(conn, id_usuario):
                 elif escolha == 3:
                     menu_excluir_usuario(conn, id_usuario)
                 elif escolha == 4:
-                    listar_usuarios(conn, id_usuario)
+                    listar_usuarios(conn)
                 elif escolha == 5:
-                    pass
+                    listar_logs(conn)
                 else:
                     print("Sessão finalizada.")
                     return

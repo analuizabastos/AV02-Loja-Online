@@ -9,3 +9,16 @@ def inserir_log(conn, id_usuario, tipo_acao, descricao, sucesso):
     finally:
         cursor.close()
 
+def lista_de_logs(conn):
+    try:
+        cursor = conn.cursor()
+        query = "SELECT id_log, id_usuario, tipo_acao, descricao, data_hora, sucesso FROM logs ORDER BY data_hora DESC"
+        cursor.execute(query)
+        logs = cursor.fetchall()
+        return logs
+    except Exception as e:
+        print(f"Erro ao listar logs: {e}")
+        return []
+    finally:
+        cursor.close()
+
