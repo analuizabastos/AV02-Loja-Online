@@ -7,7 +7,7 @@ def criar_conexao():
             host="localhost", 
             database="postgres",
             user="postgres",
-            password="post"
+            password="8692"
         )
         cursor = conn.cursor()
         cursor.execute("SET search_path TO lojaonline;")
