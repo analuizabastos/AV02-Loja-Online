@@ -1,8 +1,10 @@
+from datetime import datetime
 def inserir_log(conn, id_usuario, tipo_acao, descricao, sucesso):
     try:
         cursor = conn.cursor()
-        query = "INSERT INTO logs (id_usuario, tipo_acao, descricao, sucesso) VALUES (%s, %s, %s, %s)"
-        cursor.execute(query, (id_usuario, tipo_acao, descricao, sucesso))
+        data_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        query = "INSERT INTO logs (id_usuario, tipo_acao, descricao, sucesso, data_hora) VALUES (%s, %s, %s, %s, %s)"
+        cursor.execute(query, (id_usuario, tipo_acao, descricao, sucesso, data_hora))
         conn.commit()
     except Exception as e:
         print(f"Erro ao inserir log: {e}")

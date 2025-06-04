@@ -3,7 +3,7 @@ from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
 from Validacoes.ValidarIdCategoria import validar_idcategoria
 from services.estoque_services import adicionar_produtos_bd
-from Estoque.MostrarCategorias import mostrar_categorias
+from Estoque.Categorias.MostrarCategorias import mostrar_categorias
 from services.logs_services import inserir_log
 
 def cadastro_produto(conn, id_usuario):

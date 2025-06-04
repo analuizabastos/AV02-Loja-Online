@@ -42,7 +42,7 @@ def buscar_produto_id(conn, id_produto):
         cursor.close()
 
 
-def mostrar_estoque(conn):
+def mostrar_estoque_bd(conn):
     try:
         cursor = conn.cursor()
         query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIA c on c.id_categoria = p.id_categoria ORDER BY p.nome"
