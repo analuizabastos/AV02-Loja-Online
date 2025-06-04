@@ -1,4 +1,4 @@
-from Estoque.MostrarCategorias import Exibir_categorias
+from Estoque.Categorias.MostrarCategorias import Exibir_categorias
 from Validacoes.ValidacaoNome import validar_nome
 from services.estoque_services import adicionar_categorias
 

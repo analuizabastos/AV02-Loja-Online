@@ -14,7 +14,34 @@ def adicionar_produtos_bd(conn, nome, quantidade, preco, id_usuario, id_categori
         if cursor:
             cursor.close()
 
-def mostrar_estoque_bd(conn):
+def buscar_produto(conn, termo_busca):
+    try:
+        cursor = conn.cursor()
+        termo_formatado = f"%{termo_busca.upper()}%"
+        query = "SELECT id_produto, nome, quantidade, valor_produto FROM produtos WHERE upper(nome) LIKE %s"
+        cursor.execute(query, (termo_formatado,))
+        resultados = cursor.fetchall() 
+        return resultados
+    except Exception as e:
+        print(f"Erro ao buscar produto: {e}")
+        return []
+    finally:
+        cursor.close()
+
+def buscar_produto_id(conn, id_produto):
+    try:
+        cursor = conn.cursor()
+        query = "SELECT id_produto, nome, quantidade, valor_produto, id_usuario, id_categoria FROM produtos WHERE id_produto = %s"
+        cursor.execute(query, (id_produto,))
+        return cursor.fetchone()
+    except Exception as e:
+        print(f"Erro ao buscar produto por ID exato: {e}")
+        return None
+    finally:
+        cursor.close()
+
+
+def mostrar_estoque(conn):
     try:
         cursor = conn.cursor()
         query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIA c on c.id_categoria = p.id_categoria ORDER BY p.nome"

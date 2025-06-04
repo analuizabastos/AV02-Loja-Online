@@ -1,29 +1,49 @@
-from Estoque.Mostrarestoque import exibir_estoque
 from services.estoque_services import editar_estoque_bd
-from Validacoes.ValidarIdProduto import validar_idproduto
 from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
+from services.estoque_services import buscar_produto, buscar_produto_id
 
-def editar(conn):
+def editar_produto(conn):
     while True:
-        exibir_estoque(conn)
         novo_nome = None
         nova_quantidade = None
         novo_preco = None
         nova_categoria = None
+        produto_selecionado = None
         while True:
             print("Digite -Sair- para voltar para o Menu.\n")
             try:
-                numero = input("Informe o id do produto que deseja editar: ").strip()
-                if numero.upper() == "SAIR":
+                busca = input("Informe o nome do produto que deseja editar: ").strip()
+                if busca.upper() == "SAIR":
                     return
-                id_produto = int(numero)
-                if validar_idproduto(conn, id_produto):
-                    break
-                else:
-                    print("Id inválido. Tente Novamente.")
+                resultado = buscar_produto(conn, busca)
+                if not resultado:
+                    print("Produto não encontrado. Tente novamente!")
                     continue
+                if len(resultado) > 1:
+                    print("Por favor, selecione pelo ID:")
+                    print(f"\n{'ID':<5} {'NOME':<30} {'QUANTIDADE':<12} {'VALOR':<10}")
+                    for produtos in resultado:
+                        id_prod, nome_prod, qtd_prod, valor_prod, _, _ = produtos
+                        print(f"{id_prod:<5} {nome_prod:<30} {qtd_prod:<12} {valor_prod:<10.2f}")
+                    while True:
+                        try:
+                            id_produto = input("Digite o ID do produto que deseja editar (SAIR para cancelar): ").strip()
+                            if id_produto.upper == "SAIR":
+                                print("Edição de produto cancelada.")
+                                return
+                            id_produto = int(id_produto)
+                            produto_selecionado = buscar_produto_id(conn, id_produto)
+                            if produto_selecionado:
+                                break
+                            else:
+                                print("ID inválido. Tente novamente!")
+                        except ValueError:
+                            print("Entrada inválida. Digite um número.")
+                else:
+                    produto_selecionado = resultado
+                    break
             except ValueError:
                 print("Digite um numero válido")
         while True:
