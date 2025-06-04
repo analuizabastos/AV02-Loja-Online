@@ -1,8 +1,8 @@
 from services.estoque_services import alterar_categorias
-from Estoque.MostrarCategorias import mostrar_categorias
+from Estoque.Categorias.MostrarCategorias import mostrar_categorias
 from Validacoes.ValidarIdCategoria import validar_idcategoria
 from Validacoes.ValidacaoNome import validar_nome
-from Estoque.ExcluirCategoria import excluir_categoria
+from Estoque.Categorias.ExcluirCategoria import excluir_categoria
 
 def editar_categorias(conn):
     mostrar_categorias(conn)

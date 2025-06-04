@@ -1,4 +1,4 @@
-from Estoque.MostrarCategorias import Exibir_categorias
+from Estoque.Categorias.MostrarCategorias import Exibir_categorias
 from services.estoque_services import excluir_categoria_bd
 def excluir_categoria(conn, excluir_id):
     Exibir_categorias(conn)

@@ -1,9 +1,9 @@
-from Estoque.CadastroProduto import cadastro_produto
-from Estoque.ExcluirProduto import remover_Produto
-from Estoque.EditarEstoque import editar
-from Estoque.Mostrarestoque import exibir_estoque
-from Estoque.AdicionarCategoria import Adicao_de_categorias
-from Estoque.Editarcategorias import editar_categorias
+from Estoque.Produtos.CadastroProduto import cadastro_produto
+from Estoque.Produtos.ExcluirProduto import remover_Produto
+from Estoque.Produtos.EditarProduto import editar_produto
+from Estoque.Produtos.MostrarEstoque import exibir_estoque
+from Estoque.Categorias.AdicionarCategoria import Adicao_de_categorias
+from Estoque.Categorias.Editarcategorias import editar_categorias
 
 def menuEstoque(conn, id_usuario):
     while True:
@@ -20,7 +20,7 @@ def menuEstoque(conn, id_usuario):
                 elif escolha == 3:
                     remover_Produto(conn)
                 elif escolha == 4:
-                    editar(conn)
+                    editar_produto(conn)
                 elif escolha == 5:
                     Adicao_de_categorias(conn)
                 elif escolha == 6:
