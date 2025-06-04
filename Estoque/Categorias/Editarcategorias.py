@@ -3,8 +3,9 @@ from Estoque.Categorias.MostrarCategorias import mostrar_categorias
 from Validacoes.ValidarIdCategoria import validar_idcategoria
 from Validacoes.ValidacaoNome import validar_nome
 from Estoque.Categorias.ExcluirCategoria import excluir_categoria
+from services.logs_services import inserir_log
 
-def editar_categorias(conn):
+def editar_categorias(conn, id_usuario):
     mostrar_categorias(conn)
     while True:
         print("Digite -Sair- para voltar para o Menu.\n")
@@ -29,7 +30,7 @@ def editar_categorias(conn):
                 return
             resposta = int(resposta)
             if resposta == 2:
-                excluir_categoria(conn, id_categoria)
+                excluir_categoria(conn, id_categoria, id_usuario)
                 break
             elif resposta == 1:
                 while True:
@@ -48,9 +49,11 @@ def editar_categorias(conn):
                             sucesso = alterar_categorias(conn, id_categoria, novo_nome)
                             if sucesso:
                                 print("Categoria editada com sucesso!")
+                                inserir_log(conn, id_usuario, "EDITAR_CATEGORIA_SUCESSO", f"Nome da Categoria de ID: '{id_categoria}' alterado.", True)
                                 return
                             else:
                                 print("Erro ao editar categoria.")
+                                inserir_log(conn, id_usuario, "EDITAR_CATEGORIA_SUCESSO", f"Falha ao alterar a Categoria de ID: '{id_categoria}'.", False)
                         elif opcao == 2:
                             print("Edição cancelada.")
                             break

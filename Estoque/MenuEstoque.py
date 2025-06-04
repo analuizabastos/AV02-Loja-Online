@@ -9,7 +9,7 @@ def menuEstoque(conn, id_usuario):
     while True:
         print("\n----Estoque da Loja X----")
         print("\nO que deseja fazer?")
-        print("\n1. Cadastrar produtos\n2. Ver estoque\n3. Excluir produto\n4. Editar estoque\n5. Adicionar categorias\n6. Editar categorias\n7. . Sair\n")
+        print("\n1. Cadastrar produtos\n2. Ver estoque\n3. Excluir produto\n4. Editar estoque\n5. Adicionar categorias\n6. Editar categorias\n7. Sair\n")
         try:
             escolha = int(input("Digite um número: "))
             if escolha in [1,2,3,4,5,6,7]:
@@ -18,13 +18,13 @@ def menuEstoque(conn, id_usuario):
                 elif escolha == 2:
                     exibir_estoque(conn)
                 elif escolha == 3:
-                    remover_Produto(conn)
+                    remover_Produto(conn, id_usuario)
                 elif escolha == 4:
-                    editar_produto(conn)
+                    editar_produto(conn, id_usuario)
                 elif escolha == 5:
-                    Adicao_de_categorias(conn)
+                    Adicao_de_categorias(conn, id_usuario)
                 elif escolha == 6:
-                    editar_categorias(conn)
+                    editar_categorias(conn, id_usuario)
                 else:
                     print("Sessão finalizada.")
                     break

@@ -1,10 +1,11 @@
 from Estoque.Categorias.MostrarCategorias import Exibir_categorias
 from services.estoque_services import excluir_categoria_bd
-def excluir_categoria(conn, excluir_id):
+
+def excluir_categoria(conn, excluir_id, id_usuario):
     Exibir_categorias(conn)
     while True:
         try:   
-            excluir_categoria_bd(conn, excluir_id)
+            excluir_categoria_bd(conn, excluir_id, id_usuario)
         except ValueError as erro:
             print(erro)
         while True:

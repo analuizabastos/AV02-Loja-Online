@@ -1,6 +1,6 @@
 from services.user_services import buscar_usuario
 import bcrypt, getpass
-from services.log_services import inserir_log
+from services.logs_services import inserir_log
 
 def login(conn):
     contador = 0

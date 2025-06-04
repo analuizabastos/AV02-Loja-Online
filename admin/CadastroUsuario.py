@@ -4,7 +4,7 @@ from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoUsuario import validar_usuario
 from Validacoes.ValidacaoSenha import validar_senha
 from config.seguranca import criptografar
-from services.log_services import inserir_log
+from services.logs_services import inserir_log
 import getpass
 
 def cadastro(conn, id_usuario):

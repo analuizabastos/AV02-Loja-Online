@@ -1,5 +1,5 @@
 from services.user_services import buscar_usuario, excluir_usuario
-from services.log_services import inserir_log
+from services.logs_services import inserir_log
 
 def menu_excluir_usuario(conn, id_logado):
     print("\n--- Excluir Usuário ---\n")

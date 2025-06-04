@@ -1,3 +1,4 @@
+from services.logs_services import inserir_log
 def adicionar_produtos_bd(conn, nome, quantidade, preco, id_usuario, id_categoria):
     try:
         cursor = conn.cursor()
@@ -80,7 +81,6 @@ def editar_estoque_bd(conn, id_editar, nome=None, quantidade=None, valor_produto
     try:
         campos = []
         valores = []
-        
         if nome is not None:
             campos.append("nome = %s")
             valores.append(nome)
@@ -96,12 +96,13 @@ def editar_estoque_bd(conn, id_editar, nome=None, quantidade=None, valor_produto
         
         query = f"UPDATE produtos SET {', '.join(campos)} WHERE id_produto = %s"
         valores.append(id_editar)
-        cursor.execute(query, tuple(valores))
+        cursor.execute(query, valores)
         conn.commit()
 
         if cursor.rowcount > 0:
             print("O produto foi atualizado com sucesso")
-            return True
+            alteracoes = [c.split(' =')[0] for c in campos]
+            return alteracoes
         else:
             print("o produto não foi editado")
             return False
@@ -182,8 +183,7 @@ def alterar_categorias(conn, id_categoria, novo_nome=None):
         if cursor:
             cursor.close()
 
-
-def excluir_categoria_bd(conn, excluir_id):
+def excluir_categoria_bd(conn, excluir_id, id_usuario):
     try:
         cursor = conn.cursor()
         query = "DELETE FROM categoria WHERE id_categoria = %s"
@@ -191,13 +191,16 @@ def excluir_categoria_bd(conn, excluir_id):
         conn.commit()
         if cursor.rowcount > 0:
             print("Categoria excluída com sucesso!")
+            inserir_log(conn, id_usuario, "EXCLUSAO_CATEGORIA_SUCESSO", f"Categoria (ID: '{excluir_id}') excluída com sucesso.", True)
             return True
         else:
             print("Categoria não encontrado.")
+            inserir_log(conn, id_usuario, "EXCLUSAO_CATEGORIA_FALHA", f"Falha ao encontrar a Categoria (ID: '{excluir_id}').", False)
             return False
     except Exception as e:
         conn.rollback()
         print(f"Erro ao tentar excluir o Categoria: {e}")
+        inserir_log(conn, id_usuario, "EXCLUSAO_CATEGORIA_FALHA", f"Falha ao excluir a Categoria (ID: '{excluir_id}').", False)
         return False
     finally:
         if cursor:

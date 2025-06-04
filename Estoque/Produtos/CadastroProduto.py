@@ -4,6 +4,7 @@ from Validacoes.ValidacaoQuantidade import validar_quantidade
 from Validacoes.ValidarIdCategoria import validar_idcategoria
 from services.estoque_services import adicionar_produtos_bd
 from Estoque.MostrarCategorias import mostrar_categorias
+from services.logs_services import inserir_log
 
 def cadastro_produto(conn, id_usuario):
     while True:
@@ -60,10 +61,10 @@ def cadastro_produto(conn, id_usuario):
                 if resposta == 1:
                     sucesso = adicionar_produtos_bd(conn, nome, quantidade, valor_produto, id_usuario, id_categoria)
                     if sucesso:
-                        print("Produto cadastrado com sucesso")
+                        inserir_log(conn, id_usuario, "CADASTRO_PRODUTO_SUCESSO", f"Produto '{nome_produto}' cadastrado com sucesso.", True)
                         break
                     else:
-                        print("Erro ao cadastrar o produto.")
+                        inserir_log(conn, id_usuario, "CADASTRO_PRODUTO_FALHA", f"Falha ao cadastrar o produto '{nome_produto}'", False)
                         break
                 elif resposta == 2:
                     print("Cadastro cancelado.")

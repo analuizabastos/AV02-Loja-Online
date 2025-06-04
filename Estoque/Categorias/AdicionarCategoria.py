@@ -1,8 +1,9 @@
 from Estoque.Categorias.MostrarCategorias import Exibir_categorias
 from Validacoes.ValidacaoNome import validar_nome
 from services.estoque_services import adicionar_categorias
+from services.logs_services import inserir_log
 
-def Adicao_de_categorias(conn):
+def Adicao_de_categorias(conn, id_usuario):
     while True:
         while True:
             print("\nDigite -Sair- para voltar para o Menu.")
@@ -23,9 +24,11 @@ def Adicao_de_categorias(conn):
                 if resposta == 1:
                     sucesso = adicionar_categorias(conn, nome=nova_categoria)
                     if sucesso:
+                        inserir_log(conn, id_usuario, "CADASTRO_CATEGORIA_SUCESSO", f"Categoria '{nova_categoria}' cadastrado com sucesso.", True)
                         print("categoria cadastrada com sucesso")
                         break
                     else:
+                        inserir_log(conn, id_usuario, "CADASTRO_CATEGORIA_FALHA", f"Falha ao cadastrar a categoria'{nova_categoria}'.", False)
                         print("Erro ao cadastrar a nova categoria.")
                         break
                 elif resposta == 2:
