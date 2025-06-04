@@ -1,11 +1,11 @@
-from services.estoque_services import mostrar_estoque
+from services.estoque_services import mostrar_estoque_bd
 
 def exibir_estoque(conn):
     print("-" * 100)
     print("                                ESTOQUE DE PRODUTOS")
     print("-" * 100)
 
-    exibir_estoque = mostrar_estoque(conn)
+    exibir_estoque = mostrar_estoque_bd(conn)
 
     if exibir_estoque:
         print(f"{'ID':<5} {'NOME':<20} {'QUANTIDADE':<12} {'VALOR':<15} {'NOME_CATEGORIA':<15}")

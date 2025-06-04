@@ -1,5 +1,5 @@
 from Estoque.Mostrarestoque import exibir_estoque
-from services.estoque_services import editar_estoque
+from services.estoque_services import editar_estoque_bd
 from Validacoes.ValidarIdProduto import validar_idproduto
 from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
@@ -90,7 +90,7 @@ def editar(conn):
                     print("Deseja salvar essa alterações? \n1 - Sim \n2 - Não")
                     opcao = int(input("Digite um número: "))
                     if opcao == 1:
-                        sucesso = editar_estoque(conn, id_produto, novo_nome, nova_quantidade, novo_preco, nova_categoria)
+                        sucesso = editar_estoque_bd(conn, id_produto, novo_nome, nova_quantidade, novo_preco, nova_categoria)
                         if sucesso:
                             print("Produto editado com sucesso!")
                             break

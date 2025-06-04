@@ -1,4 +1,4 @@
-def adicionar_produtos(conn, nome, quantidade, preco, id_usuario, id_categoria):
+def adicionar_produtos_bd(conn, nome, quantidade, preco, id_usuario, id_categoria):
     try:
         cursor = conn.cursor()
         query = "INSERT into PRODUTOS (nome, quantidade, valor_produto, id_usuario, id_categoria) VALUES (%s, %s, %s, %s, %s)"
@@ -14,7 +14,7 @@ def adicionar_produtos(conn, nome, quantidade, preco, id_usuario, id_categoria):
         if cursor:
             cursor.close()
 
-def mostrar_estoque(conn):
+def mostrar_estoque_bd(conn):
     try:
         cursor = conn.cursor()
         query = "SELECT p.id_produto, p.nome, p.quantidade, p.valor_produto, c.nome FROM PRODUTOS p inner join CATEGORIA c on c.id_categoria = p.id_categoria ORDER BY p.nome"
@@ -48,12 +48,11 @@ def excluir_produto(conn, excluir_id):
         if cursor:
             cursor.close()
 
-def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=None, id_categoria=None):
+def editar_estoque_bd(conn, id_editar, nome=None, quantidade=None, valor_produto=None, id_categoria=None):
     cursor = conn.cursor()
     try:
         campos = []
         valores = []
-
         
         if nome is not None:
             campos.append("nome = %s")
@@ -87,6 +86,7 @@ def editar_estoque(conn, id_editar, nome=None, quantidade=None, valor_produto=No
         if cursor:
             cursor.close()
 
+
 def Exibir_categorias(conn):
     try:
         cursor = conn.cursor()
@@ -100,7 +100,6 @@ def Exibir_categorias(conn):
     finally:
         if cursor:
             cursor.close()
-
 
 
 def adicionar_categorias(conn, nome):
@@ -119,6 +118,7 @@ def adicionar_categorias(conn, nome):
     finally:
         if cursor:
             cursor.close()
+
     
 def alterar_categorias(conn, id_categoria, novo_nome=None):
     cursor = None
@@ -154,6 +154,7 @@ def alterar_categorias(conn, id_categoria, novo_nome=None):
     finally:
         if cursor:
             cursor.close()
+
 
 def excluir_categoria_bd(conn, excluir_id):
     try:

@@ -1,18 +1,20 @@
 from Validacoes.ValidacaoNome import validar_nome
 from Validacoes.ValidacaoPreco import validar_preco
 from Validacoes.ValidacaoQuantidade import validar_quantidade
-from services.estoque_services import adicionar_produtos
+from Validacoes.ValidarIdCategoria import validar_idcategoria
+from services.estoque_services import adicionar_produtos_bd
+from Estoque.MostrarCategorias import mostrar_categorias
 
 def cadastro_produto(conn, id_usuario):
     while True:
         while True:
             print("\nDigite -Sair- para voltar para o Menu.")
-            nome = input("\nNome do produto: ").upper()
+            nome_produto = input("\nNome do produto: ").upper()
             try:
-                if nome == "SAIR":
+                if nome_produto == "SAIR":
                     return
-                validar_nome(nome)
-                nome_produto = nome
+                validar_nome(nome_produto)
+                nome = nome_produto
                 break 
             except ValueError as erro:
                 print(erro) 
@@ -30,27 +32,16 @@ def cadastro_produto(conn, id_usuario):
                 print("Preco invalido. Digite apenas numeros.")
         while True:
             try:
-                print("---------- CATEGORIAS -----------\n")
-                print("1 - Eletronicos\n")
-                print("2 - Livros\n")
-                print("3 - Roupas\n")
+                mostrar_categorias(conn)
                 print("Digite -Sair- para voltar para o Menu.\n")
                 cadastro_categoria = input("Informe a categoria do produto: ").strip()
                 if cadastro_categoria.upper() == "SAIR":
                     return
-                categoria_produto = int(cadastro_categoria)
-                if categoria_produto in [1,2,3]:
-                    if categoria_produto == 1:
-                        id_categoria = 1
-                        break
-                    elif categoria_produto == 2:
-                        id_categoria = 2
-                        break
-                    else:
-                        id_categoria = 3
-                        break
-            except ValueError:
-                print("Digite um valor válido")
+                validar_idcategoria(conn, cadastro_categoria)
+                id_categoria = cadastro_categoria
+                break
+            except ValueError as erro:
+                print(erro)
         while True:
             try:
                 print("Digite -Sair- para voltar para o Menu.\n")
@@ -67,7 +58,7 @@ def cadastro_produto(conn, id_usuario):
                 print("Deseja cadastrar esse produto?\n1. Sim\n2. Não")
                 resposta = int(input("Digite um numero: "))
                 if resposta == 1:
-                    sucesso = adicionar_produtos(conn, nome_produto, quantidade, valor_produto, id_usuario, id_categoria)
+                    sucesso = adicionar_produtos_bd(conn, nome, quantidade, valor_produto, id_usuario, id_categoria)
                     if sucesso:
                         print("Produto cadastrado com sucesso")
                         break
